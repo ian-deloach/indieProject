@@ -1,10 +1,11 @@
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <modelVersion>4.0.0</modelVersion>
-<groupId>edu.matc.entjava.yourindieproject</groupId>
-<artifactId>yourindieproject</artifactId>
+<groupId>edu.matc.entjava.BiteSize</groupId>
+<artifactId>BiteSize</artifactId>
 <packaging>war</packaging>
 <version>1.0-SNAPSHOT</version>
-<name>YourIndieProject Maven Webapp</name>
+<name>BiteSize</name>
 <url>http://maven.apache.org</url>
 <properties>
 <maven.compiler.release>11</maven.compiler.release>
@@ -75,7 +76,7 @@
 </dependency>
 </dependencies>
 <build>
-<finalName>YourIndieProject</finalName>
+<finalName>BiteSize</finalName>
 <pluginManagement>
 <plugins>
 <plugin>
