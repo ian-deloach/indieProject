@@ -1,16 +1,31 @@
 package biteSize.entity;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.*;
 
 /**
  * A class to represent the users
  * @author IanDeLoach
  */
+
+@Entity
+@Table(name="user")
 public class User {
 
+    @Column(name="name")
     private String name;
+
+    @Column(name="email")
     private String email;
-    private List<Task> tasks;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Task> tasks = new ArrayList<>();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
     /**

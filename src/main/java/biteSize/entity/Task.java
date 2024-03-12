@@ -1,5 +1,8 @@
 package biteSize.entity;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Date;
 
 /**
@@ -7,13 +10,28 @@ import java.util.Date;
  * @author IanDeLoach
  */
 
+@Entity
+@Table(name="task")
 public class Task {
 
+    @Column(name="name")
     private String name;
+
+    @Column(name="deadline")
     private Date deadline;
+
+    @Column(name="urgency")
     private String urgency;
+
+    @Column(name="theme")
     private String theme;
+
+    @ManyToOne
     private User user;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
     /**
