@@ -2,11 +2,16 @@ package biteSize.entity;
 
 import java.util.*;
 
+/**
+ * A class to represent the users
+ * @author IanDeLoach
+ */
 public class User {
 
     private String name;
     private String email;
     private List<Task> tasks;
+    private int id;
 
     /**
      * Gets the user's name
