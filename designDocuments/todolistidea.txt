@@ -1,0 +1,27 @@
+INDIE PROJECT IDEA
+FUN TO-DO LIST
+
+create event
+-how much does this matter?
+-is it difficult?
+-how urgent is it?
+--what is the theme?
+--lump themes together
+
+randomized to-dos based on previous factors
+
+"rewards"
+
+log in to save lists
+-can use as a guest by saving the browser session
+
+week by week view
+-automatically sort tasks for the week into different days
+
+[View tasks]
+Sort by name
+Sort by add date
+Sort by deadlines
+Automatically highlight tasks past deadline
+
+Ask the user when the working day ends so the app can ask if they finished the assigned tasks
