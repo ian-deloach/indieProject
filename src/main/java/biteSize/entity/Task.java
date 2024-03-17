@@ -26,6 +26,9 @@ public class Task {
     @Column(name="theme")
     private String theme;
 
+    @Column(name="description")
+    private String description;
+
     @ManyToOne
     private User user;
 
@@ -128,5 +131,21 @@ public class Task {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * Getter for description
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * Setter for description
+     * @param description the new description
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
