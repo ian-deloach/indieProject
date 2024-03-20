@@ -52,11 +52,16 @@ public class UserDaoTest extends TestCase {
     }
 
     public void testGetByEqual() {
-        // TODO
+        List<User> users = dao.getPropertyEqual("name", "Ian");
+        assertEquals(1, users.size());
+        assertEquals("Ian", users.get(0).getName());
     }
 
     public void testGetByLike() {
-        // TODO
+        List<User> users = dao.getPropertyLike("name", "ian");
+        assertEquals(2, users.size());
+        assertEquals("Ian", users.get(0).getName());
+        assertEquals("Arianna", users.get(1).getName());
     }
 
 

@@ -2,11 +2,13 @@ package biteSize.persistence;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Root;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.criteria.HibernateCriteriaBuilder;
 
 import java.util.List;
 
@@ -101,9 +103,17 @@ public class GenericDao<T> {
      * @param propertyName the property to search by
      * @param value the value of the property you are searching for
      */
-//    public List<T> getPropertyEqual(String propertyName, String value) {
-//        // TODO
-//    }
+    public List<T> getPropertyEqual(String propertyName, String value) {
+        Session session = getSession();
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        List<T> entities = session.createSelectionQuery(query).getResultList();
+
+        session.close();
+        return entities;
+    }
 
     /**
      * Get entity by property like
@@ -111,9 +121,18 @@ public class GenericDao<T> {
      * @param propertyName the property to search by
      * @param value the value of the property you are searching for
      */
-//    public List<T> getPropertyLike(String propertyName, String value) {
-//        // TODO
-//    }
+    public List<T> getPropertyLike(String propertyName, String value) {
+        Session session = getSession();
+        HibernateCriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        Expression<String> propertyPath = root.get(propertyName);
+        query.where(builder.like(propertyPath, "%" + value + "%"));
+        List<T> entities = session.createQuery(query).getResultList();
+
+        session.close();
+        return entities;
+    }
 
     /**
      * Returns an open session from SessionFactory
