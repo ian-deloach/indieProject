@@ -27,6 +27,16 @@ public class GenericDao<T> {
     }
 
     /**
+     * Insert an entity
+     *
+     * @param entity the entity to be inserted
+     *
+     */
+    public void insert(T entity) {
+        // TODO
+    }
+
+    /**
      * Get entity by id
      *
      * @param id the entities id to lookup
@@ -37,6 +47,31 @@ public class GenericDao<T> {
         T entity = (T)session.get(type, id);
         session.close();
         return entity;
+    }
+
+    /**
+     * Returns all entities of selected type
+     *
+     * @return the list of entities
+     */
+    public List<T> getAll() {
+        Session session = getSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+
+        return list;
+    }
+
+    /**
+     * Update an entity
+     *
+     * @param entity the entity to be updated
+     */
+    public void update(T entity) {
+        // TODO
     }
 
     /**
@@ -52,15 +87,24 @@ public class GenericDao<T> {
         session.close();
     }
 
-    public List<T> getAll() {
-        Session session = getSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
-        List<T> list = session.createQuery(query).getResultList();
-        session.close();
+    /**
+     * Get entity by property (exact match)
+     *
+     * @param propertyName the property to search by
+     * @param value the value of the property you are searching for
+     */
+    public List<T> getPropertyEqual(String propertyName, String value) {
+        // TODO
+    }
 
-        return list;
+    /**
+     * Get entity by property like
+     *
+     * @param propertyName the property to search by
+     * @param value the value of the property you are searching for
+     */
+    public List<T> getPropertyLike(String propertyName, String value) {
+        // TODO
     }
 
     /**
