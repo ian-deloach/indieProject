@@ -31,7 +31,6 @@ public class GenericDao<T> {
     public <T>T getById(int id) {
         Session session = getSession();
         T entity = (T)session.get(type, id);
-        logger.info("Testing if logging is working");
         session.close();
         return entity;
     }
