@@ -21,6 +21,25 @@ public class UserDaoTest extends TestCase {
         assertEquals("Ian", retrievedUser.getName());
     }
 
+    public void testInsert() {
+        int insertedID;
+        User newUser = new User("Kobey", "kobey@gmail.com");
+        dao.insert(newUser);
+
+        User insertedUser = (User)dao.getById(3);
+        assertEquals("Kobey", insertedUser.getName());
+        assertEquals(3, insertedUser.getId());
+    }
+
+    public void testUpdate() {
+        User userToUpdate = (User)dao.getById(1);
+        userToUpdate.setName("Michael");
+        dao.update(userToUpdate);
+
+        User retrievedUser = (User)dao.getById(1);
+        assertEquals("Michael", retrievedUser.getName());
+    }
+
     public void testUserDelete() {
         User userToDelete = (User)dao.getById(1);
         dao.delete(userToDelete);
@@ -30,6 +49,14 @@ public class UserDaoTest extends TestCase {
     public void testGetAll() {
         List<User> users = dao.getAll();
         assertEquals(2, users.size());
+    }
+
+    public void testGetByEqual() {
+        // TODO
+    }
+
+    public void testGetByLike() {
+        // TODO
     }
 
 

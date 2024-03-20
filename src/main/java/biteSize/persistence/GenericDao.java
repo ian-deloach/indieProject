@@ -33,7 +33,11 @@ public class GenericDao<T> {
      *
      */
     public void insert(T entity) {
-        // TODO
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.persist(entity);
+        transaction.commit();
+        session.close();
     }
 
     /**
@@ -71,7 +75,11 @@ public class GenericDao<T> {
      * @param entity the entity to be updated
      */
     public void update(T entity) {
-        // TODO
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+        session.merge(entity);
+        transaction.commit();
+        session.close();
     }
 
     /**
@@ -93,9 +101,9 @@ public class GenericDao<T> {
      * @param propertyName the property to search by
      * @param value the value of the property you are searching for
      */
-    public List<T> getPropertyEqual(String propertyName, String value) {
-        // TODO
-    }
+//    public List<T> getPropertyEqual(String propertyName, String value) {
+//        // TODO
+//    }
 
     /**
      * Get entity by property like
@@ -103,9 +111,9 @@ public class GenericDao<T> {
      * @param propertyName the property to search by
      * @param value the value of the property you are searching for
      */
-    public List<T> getPropertyLike(String propertyName, String value) {
-        // TODO
-    }
+//    public List<T> getPropertyLike(String propertyName, String value) {
+//        // TODO
+//    }
 
     /**
      * Returns an open session from SessionFactory

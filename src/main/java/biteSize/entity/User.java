@@ -29,6 +29,25 @@ public class User {
     private int id;
 
     /**
+     * No param constructor for user
+     */
+    public User() {
+        name = "User";
+        email = "EmailNotSupplied";
+    }
+
+    /**
+     * Constructor for user
+     *
+     * @param name the user's name
+     * @param email the user's email
+     */
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    /**
      * Gets the user's name
      * @return the name
      */
@@ -74,5 +93,9 @@ public class User {
      */
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public int getId() {
+        return id;
     }
 }
