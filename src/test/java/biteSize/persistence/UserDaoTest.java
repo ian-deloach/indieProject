@@ -2,8 +2,8 @@ package biteSize.persistence;
 
 import biteSize.entity.User;
 import junit.framework.TestCase;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class UserDaoTest extends TestCase {
 
@@ -19,6 +19,17 @@ public class UserDaoTest extends TestCase {
         User retrievedUser = (User)dao.getById(1);
         assertNotNull(retrievedUser);
         assertEquals("Ian", retrievedUser.getName());
+    }
+
+    public void testUserDelete() {
+        User userToDelete = (User)dao.getById(1);
+        dao.delete(userToDelete);
+        assertNull(dao.getById(1));
+    }
+
+    public void testGetAll() {
+        List<User> users = dao.getAll();
+        assertEquals(2, users.size());
     }
 
 
