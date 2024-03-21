@@ -1,1 +1,0 @@
-I had ideas on my desktop that will be added here later.

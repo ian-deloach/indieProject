@@ -23,5 +23,3 @@ Having a long list of To-Dos is daunting to get started with, and it can make it
 [Planning and Rough Sketches](designDocuments)
 
 [Journal](journal.md)
-
-[Brainstorming](brainstorm.md)
