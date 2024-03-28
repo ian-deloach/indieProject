@@ -3,6 +3,8 @@ package biteSize.utilities;
 
 import java.io.IOException;
 import java.util.Properties;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 /**
@@ -18,13 +20,16 @@ public interface PropertiesLoader {
     }
 
     default Properties loadProperties(String propertiesFilePath) {
+
+        final Logger logger = LogManager.getLogger(this.getClass());
+
         Properties properties = new Properties();
         try {
             properties.load(this.getClass().getResourceAsStream(propertiesFilePath));
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            logger.error("Could not read properties file", ioException);
         } catch (Exception exception) {
-            exception.printStackTrace();
+            logger.error("An error occurred in reading properties", exception);
         }
         return properties;
     }

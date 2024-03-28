@@ -23,6 +23,9 @@ Change the description, deadline and/or priority of a task.
 ### Create List*
 Randomly generate a smaller todo list from the pool of tasks available
 
+### Delete Task*
+Users can delete tasks they no longer need to track.
+
 ### Manually Create List
 Users can manually create lists if they so choose and have tasks used
 to automatically be taken out of the future generations if done this way

@@ -13,4 +13,4 @@ This caused a lot of issues with Maven, so I had to take the time to learn how t
 - Created generic dao to be used for all CRUD
 - Tested user dao to ensure generic dao works
 - Created test database to run tests on
-- Adding many-to-many relationship for schedules and tasks
+- Adding many-to-many relationship for schedules and taskslrkkkk
