@@ -10,7 +10,8 @@ import java.util.*;
  * @author Ian DeLoach
  */
 
-@Entity(name = "theme")
+@Entity
+@Table(name = "theme")
 public class Theme {
 
     @Id

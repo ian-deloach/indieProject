@@ -4,15 +4,32 @@ import java.util.Date;
 import java.util.List;
 import biteSize.entity.Task;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
 // TODO Create a schedule class that will hold a list of tasks for the day
 // This will be a many to many relationship with tasks. Make a separate table.
+@Entity
+@Table(name="schedule")
 public class Schedule {
 
-    private Date expirationDate;
-    private Date dateCreated;
-    private List<Task> tasks;
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private int id;
+
+    @Column(name="expiration_date")
+    private Date expirationDate;
+
+    @Column(name="date_created")
+    private Date dateCreated;
+
+
+    private List<Task> tasks;
+
+    @Column(name="name")
+    private String name;
+
 
     /**
      * Zero param constructor
