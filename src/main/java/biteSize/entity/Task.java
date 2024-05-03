@@ -23,8 +23,8 @@ public class Task {
     @Column(name="urgency")
     private String urgency;
 
-    @Column(name="theme")
-    private String theme;
+    @ManyToOne
+    private Theme theme;
 
     @Column(name="description")
     private String description;
@@ -89,7 +89,7 @@ public class Task {
      * Getter for theme
      * @return the theme
      */
-    public String getTheme() {
+    public Theme getTheme() {
         return theme;
     }
 
@@ -97,7 +97,7 @@ public class Task {
      * Setter for theme
      * @param theme
      */
-    public void setTheme(String theme) {
+    public void setTheme(Theme theme) {
         this.theme = theme;
     }
 
