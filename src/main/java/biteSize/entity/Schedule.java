@@ -1,10 +1,12 @@
 package biteSize.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import biteSize.entity.Task;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 // This will be a many-to-many relationship with tasks. Make a separate table.
@@ -23,7 +25,8 @@ public class Schedule {
     @Column(name="date_created")
     private Date dateCreated;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     @JoinTable(
             name = "schedule_task",
             joinColumns = {@JoinColumn(name="schedule_id")},

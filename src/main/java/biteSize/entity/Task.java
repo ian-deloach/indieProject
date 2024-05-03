@@ -32,7 +32,7 @@ public class Task {
     @ManyToOne
     private Theme theme;
 
-    @ManyToMany(mappedBy = "tasks")
+    @ManyToMany(mappedBy = "tasks", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Schedule> schedules = new ArrayList<>();
 
     @Column(name="description")
