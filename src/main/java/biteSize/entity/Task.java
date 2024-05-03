@@ -3,6 +3,7 @@ package biteSize.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.*;
 import java.util.Date;
 
 /**
@@ -13,6 +14,11 @@ import java.util.Date;
 @Entity
 @Table(name="task")
 public class Task {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    private int id;
 
     @Column(name="name")
     private String name;
@@ -26,16 +32,14 @@ public class Task {
     @ManyToOne
     private Theme theme;
 
+    @ManyToMany(mappedBy = "tasks")
+    private List<Schedule> schedules = new ArrayList<>();
+
     @Column(name="description")
     private String description;
 
     @ManyToOne
     private User user;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    private int id;
 
     /**
      * Getter for name
@@ -147,5 +151,21 @@ public class Task {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * Getter for the schedule list
+     * @return the task's schedule list
+     */
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    /**
+     * Setter for the task's schedule list
+     * @param schedules the new list of schedules
+     */
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }

@@ -24,7 +24,12 @@ public class Schedule {
     @Column(name="date_created")
     private Date dateCreated;
 
-
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(
+            name = "Schedule_TasK",
+            joinColumns = {@JoinColumn(name="schedule_id")},
+            inverseJoinColumns = {@JoinColumn(name="task_id")}
+    )
     private List<Task> tasks;
 
     @Column(name="name")
