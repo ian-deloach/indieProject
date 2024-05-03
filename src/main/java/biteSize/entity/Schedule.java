@@ -7,8 +7,7 @@ import biteSize.entity.Task;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-// TODO Create a schedule class that will hold a list of tasks for the day
-// This will be a many to many relationship with tasks. Make a separate table.
+// This will be a many-to-many relationship with tasks. Make a separate table.
 @Entity
 @Table(name="schedule")
 public class Schedule {
@@ -26,7 +25,7 @@ public class Schedule {
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "Schedule_TasK",
+            name = "schedule_task",
             joinColumns = {@JoinColumn(name="schedule_id")},
             inverseJoinColumns = {@JoinColumn(name="task_id")}
     )
