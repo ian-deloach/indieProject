@@ -21,6 +21,9 @@
         <maven-surefire-plugin-version>2.19</maven-surefire-plugin-version>
         <hibernate-core-version>6.4.3.Final</hibernate-core-version>
         <hibernate-c3p0-version>6.4.3.Final</hibernate-c3p0-version>
+        <auth-version>3.4.1</auth-version>
+        <org-json-version>20170516</org-json-version>
+        <commons-io-version>2.11.0</commons-io-version>
     </properties>
 
     <dependencies>
@@ -89,6 +92,24 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate-c3p0-version}</version>
+        </dependency>
+
+        <!-- for parsing the aws access tokens -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>${auth-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${org-json-version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io-version}</version>
         </dependency>
     </dependencies>
 
