@@ -1,14 +1,13 @@
 package biteSize.controller;
 
 import biteSize.utilities.PropertiesLoader;
+import biteSize.auth.*;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.matc.auth.*;
-import edu.matc.util.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.io.*;
@@ -42,9 +41,6 @@ import java.util.stream.Collectors;
         urlPatterns = {"/auth"}
 )
 // TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
-/**
- * Inspired by: https://stackoverflow.com/questions/52144721/how-to-get-access-token-using-client-credentials-using-java-code
- */
 
 public class Auth extends HttpServlet implements PropertiesLoader {
     Properties properties;
@@ -247,8 +243,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             REDIRECT_URL = properties.getProperty("redirectURL");
             REGION = properties.getProperty("region");
             POOL_ID = properties.getProperty("poolId");
-        } catch (IOException ioException) {
-            logger.error("Cannot load properties..." + ioException.getMessage(), ioException);
         } catch (Exception e) {
             logger.error("Error loading properties" + e.getMessage(), e);
         }
