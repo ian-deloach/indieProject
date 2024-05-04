@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!--TODO Create a logout page and update the app client on AWS -->
 <html>
 <body>
     <h1>Bite Size</h1>
