@@ -19,8 +19,8 @@
             <c:forEach var="task" items="${tasks}">
                 <tr>
                     <td>${task.name}</td>
-                    <td>${task.deadline}</td>
                     <td>${task.urgency}</td>
+                    <td>${task.deadline}</td>
                     <td>${task.description}</td>
                 </tr>
             </c:forEach>

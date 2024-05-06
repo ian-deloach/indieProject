@@ -22,7 +22,7 @@ import java.util.Properties;
 public class ApplicationStartup extends HttpServlet implements PropertiesLoader {
 
     public void init() throws ServletException {
-        Properties properties = new Properties();
+        Properties properties = loadProperties("database.properties");
         ServletContext servletContext = getServletContext();
 
         servletContext.setAttribute("properties", properties);
