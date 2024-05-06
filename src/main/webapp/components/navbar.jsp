@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/tasks">My Tasks</a>
+                    <a class="nav-link active" aria-current="page" href="/BiteSize_war/tasks">My Tasks</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Schedules</a>
