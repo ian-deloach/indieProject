@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.*;
+import java.util.Properties;
 
 /**
  * An initialization process for the webapp
@@ -21,7 +22,10 @@ import java.io.*;
 public class ApplicationStartup extends HttpServlet implements PropertiesLoader {
 
     public void init() throws ServletException {
+        Properties properties = new Properties();
+        ServletContext servletContext = getServletContext();
 
+        servletContext.setAttribute("properties", properties);
     }
 
 }
