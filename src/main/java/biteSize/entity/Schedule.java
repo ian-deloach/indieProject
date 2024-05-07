@@ -3,9 +3,14 @@ package biteSize.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
 import biteSize.entity.Task;
 
+import biteSize.persistence.GenericDao;
 import jakarta.persistence.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -45,10 +50,27 @@ public class Schedule {
 
     }
 
-    public void createNewSchedule() {
+    public List<Task> generateSchedule(int id) {
 
+        GenericDao userDao = new GenericDao(User.class);
+        User user = (User)userDao.getById(id);
 
+        List<Task> taskList = user.getTasks();
+        List<Task> urgentTasks = new ArrayList<Task>();
+        List<Task> newSchedule = new ArrayList<Task>();
 
+        for (Task task : taskList) {
+            if (Objects.equals(task.getUrgency(), "Urgent")) {
+                urgentTasks.add(task);
+            }
+        }
+
+        return urgentTasks;
+    }
+
+    public Task getRandomTaskFromList(List<Task> tasks) {
+
+        return null;
     }
 
     /**
