@@ -38,7 +38,10 @@ public class AddTask extends HttpServlet {
         String redirectUrl = "/addTasks.jsp";
         String dispatcherUrl = "/tasks";
         HttpSession session = req.getSession();
+        session.removeAttribute("addMessage");
         int userId = Integer.parseInt(session.getAttribute("userId").toString());
+
+        // TODO All of the 'validations' are band-aid fixes. They can be improved.
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date deadline = null;
@@ -56,8 +59,7 @@ public class AddTask extends HttpServlet {
         }
 
         if (Objects.equals(name, "")) {
-            session.setAttribute("addMessage", "Please fill out the task name");
-            resp.sendRedirect(redirectUrl);
+            name = "New Task";
         }
 
         GenericDao userDao = new GenericDao(User.class);

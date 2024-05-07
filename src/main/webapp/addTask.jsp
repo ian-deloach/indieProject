@@ -8,6 +8,15 @@
 <body>
 <c:import url="components/navbar.jsp"/>
 
+    <c:choose>
+        <c:when test="${empty addMessage}">
+            <h1>Add Task</h1>
+        </c:when>
+    <c:otherwise>
+            <h3>${addMessage}</h3>
+    </c:otherwise>
+    </c:choose>
+
     <form action="/BiteSize_war/add-task" method="POST">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName">

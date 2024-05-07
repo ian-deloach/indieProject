@@ -18,7 +18,7 @@
         <tbody>
             <c:forEach var="task" items="${tasks}">
                 <tr>
-                    <td>${task.name}</td>
+                    <td><a href="/editTask?id=${task.id}">${task.name}</a></td>
                     <td>${task.urgency}</td>
                     <td>${task.deadline}</td>
                     <td>${task.description}</td>
