@@ -35,7 +35,6 @@ public class AddTask extends HttpServlet {
         String deadlineString = req.getParameter("deadline");
         String urgency = req.getParameter("urgent");
         String description = req.getParameter("description");
-        String redirectUrl = "/addTasks.jsp";
         String dispatcherUrl = "/tasks";
         HttpSession session = req.getSession();
         session.removeAttribute("addMessage");
