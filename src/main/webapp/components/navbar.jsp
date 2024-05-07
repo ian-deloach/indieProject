@@ -15,6 +15,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/BiteSize_war/add-task">Add Task</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/BiteSize_war/log-out">Add Task</a>
+                </li>
             </ul>
         </div>
     </div>
