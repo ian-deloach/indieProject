@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.URI;
@@ -74,6 +75,8 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String authCode = req.getParameter("code");
         String userName = null;
 
+        HttpSession session = req.getSession();
+
         if (authCode == null) {
             //TODO forward to an error page or back to the login
         } else {
@@ -81,7 +84,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
                 userName = validate(tokenResponse);
-                req.setAttribute("userName", userName);
+                session.setAttribute("userName", userName);
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
                 //TODO forward to an error page
@@ -164,13 +167,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
-        String userName = jwt.getClaim("cognito:username").asString();
+        String userName = jwt.getClaim("nickname").asString();
         logger.debug("here's the username: " + userName);
 
         logger.debug("here are all the available claims: " + jwt.getClaims());
-
-        // TODO decide what you want to do with the info!
-        // for now, I'm just returning username for display back to the browser
 
         return userName;
     }
