@@ -34,4 +34,24 @@ public class GetTasks extends HttpServlet {
         dispatcher.forward(req, resp);
 
     }
+
+    //TODO These are duplicate. Can be cleaned up when I have more time :)
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        HttpSession session = req.getSession();
+        GenericDao userDao = new GenericDao(User.class);
+        String userEmail = (String) session.getAttribute("userEmail");
+
+        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
+        User user = foundUsers.get(0);
+        List<Task> taskList = user.getTasks();
+
+        req.setAttribute("tasks", taskList);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/tasks.jsp");
+        dispatcher.forward(req, resp);
+
+    }
+
 }

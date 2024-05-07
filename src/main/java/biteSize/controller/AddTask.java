@@ -8,6 +8,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -34,12 +36,24 @@ public class AddTask extends HttpServlet {
         String urgency = req.getParameter("urgent");
         String description = req.getParameter("description");
         String redirectUrl = "/addTasks.jsp";
-        String dispatcherUrl = "/tasks.jsp";
+        String dispatcherUrl = "/tasks";
         HttpSession session = req.getSession();
         int userId = Integer.parseInt(session.getAttribute("userId").toString());
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM, d", Locale.ENGLISH);
-        Date deadline = (Date) formatter.parse(deadlineString);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date deadline = null;
+
+        if (!Objects.equals(deadlineString, "")) {
+            try {
+                deadline = format.parse(deadlineString);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (Objects.equals(urgency, "on")) {
+            urgency = "Urgent";
+        }
 
         if (Objects.equals(name, "")) {
             session.setAttribute("addMessage", "Please fill out the task name");
