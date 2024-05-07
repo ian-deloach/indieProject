@@ -14,6 +14,7 @@
             </c:when>
             <c:otherwise>
                 <h3>Welcome ${userName}</h3>
+                <p>Your email: ${userEmail}</p>
             </c:otherwise>
         </c:choose>
         <c:import url="components/bootstrapBody.jsp"/>

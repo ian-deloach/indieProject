@@ -20,6 +20,8 @@ public class GetTasks extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         GenericDao taskDao = new GenericDao(Task.class);
+        HttpSession session = req.getSession();
+        String userEmail = (String)session.getAttribute("userEmail");
         List<Task> taskList = taskDao.getAll();
 
         req.setAttribute("tasks", taskList);
