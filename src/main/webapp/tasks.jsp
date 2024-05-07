@@ -7,6 +7,7 @@
 </head>
 <body>
 <c:import url="components/navbar.jsp"/>
+<!--TODO Make every page only accessible if you have a valid email in the session -->
     <h2>All Tasks</h2>
 
     <table>
