@@ -71,7 +71,7 @@ public class Schedule {
         }
 
         List<Task> newSchedule = generateRandomTasks(regularTasks);
-
+        newSchedule.add(generateUrgentTask(urgentTasks));
 
         return newSchedule;
     }
@@ -87,12 +87,25 @@ public class Schedule {
 
         while (randomTasks.size() < 4 && !tasks.isEmpty()) {
             randomNumber = rng.nextInt(tasks.size());
-            logger.info("Here is the random number: " + randomNumber);
+            //logger.info("Here is the random number: " + randomNumber);
             randomTasks.add(tasks.get(randomNumber));
             tasks.remove(randomNumber);
         }
 
         return randomTasks;
+    }
+
+    public Task generateUrgentTask(List<Task> urgentTasks) {
+
+        final Logger logger = LogManager.getLogger(this.getClass());
+
+        Random rng = new Random();
+        int randomNumber = rng.nextInt((urgentTasks.size()));
+        Task urgentTask = urgentTasks.get(randomNumber);
+
+        //logger.info("The urgent task: " + urgentTask.getName());
+
+        return urgentTask;
     }
 
     /**
