@@ -28,6 +28,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Task> tasks = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Schedule> schedules = new ArrayList<>();
+
     /**
      * No param constructor for user
      */
@@ -95,7 +98,36 @@ public class User {
         this.tasks = tasks;
     }
 
+
+    /**
+     * Getter for id
+     * @return the user id
+     */
     public int getId() {
         return id;
+    }
+
+    /**
+     * Setter for id
+     * @param id the new user id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Getter for schedule list
+     * @return the user's schedules
+     */
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    /**
+     * Setter for schedule list
+     * @param schedules the new schedule list
+     */
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }

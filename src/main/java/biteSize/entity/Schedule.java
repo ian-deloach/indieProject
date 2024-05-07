@@ -1,14 +1,19 @@
 package biteSize.entity;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
 import biteSize.entity.Task;
 
+import biteSize.persistence.GenericDao;
 import jakarta.persistence.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * The type Schedule.
+ */
 // This will be a many-to-many relationship with tasks. Make a separate table.
 @Entity
 @Table(name="schedule")
@@ -37,12 +42,82 @@ public class Schedule {
     @Column(name="name")
     private String name;
 
+    @ManyToOne
+    private User user;
+
 
     /**
      * Zero param constructor
      */
     public Schedule() {
 
+    }
+
+    /**
+     * Generates a list of tasks for a new schedule. Each schedule has 4 regular
+     * tasks and 1 urgent task.
+     * @param id The id of the user
+     * @return The list of tasks for the new schedule
+     */
+    public List<Task> generateSchedule(int id) {
+
+        final Logger logger = LogManager.getLogger(this.getClass());
+
+        GenericDao userDao = new GenericDao(User.class);
+        User user = (User)userDao.getById(id);
+
+        List<Task> taskList = user.getTasks();
+        List<Task> urgentTasks = new ArrayList<Task>();
+        List<Task> regularTasks = new ArrayList<Task>();
+
+        for (Task task : taskList) {
+            if (Objects.equals(task.getUrgency(), "Urgent")) {
+                urgentTasks.add(task);
+            } else {
+                regularTasks.add(task);
+            }
+        }
+
+        List<Task> newSchedule = generateRandomTasks(regularTasks);
+        newSchedule.add(generateUrgentTask(urgentTasks));
+
+        for(Task task : newSchedule) {
+            logger.info("New Schedule Task: " + task.getName());
+        }
+
+        return newSchedule;
+    }
+
+    public List<Task> generateRandomTasks(List<Task> tasks) {
+
+        final Logger logger = LogManager.getLogger(this.getClass());
+
+        Random rng = new Random();
+        int randomNumber;
+
+        List<Task> randomTasks = new ArrayList<Task>();
+
+        while (randomTasks.size() < 4 && !tasks.isEmpty()) {
+            randomNumber = rng.nextInt(tasks.size());
+            //logger.info("Here is the random number: " + randomNumber);
+            randomTasks.add(tasks.get(randomNumber));
+            tasks.remove(randomNumber);
+        }
+
+        return randomTasks;
+    }
+
+    public Task generateUrgentTask(List<Task> urgentTasks) {
+
+        final Logger logger = LogManager.getLogger(this.getClass());
+
+        Random rng = new Random();
+        int randomNumber = rng.nextInt((urgentTasks.size()));
+        Task urgentTask = urgentTasks.get(randomNumber);
+
+        //logger.info("The urgent task: " + urgentTask.getName());
+
+        return urgentTask;
     }
 
     /**
@@ -115,5 +190,29 @@ public class Schedule {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * Setter for id
+     * @param id the new id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Getter for schedule's user
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Setter for the schedule's user
+     * @param user the new user
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 }
