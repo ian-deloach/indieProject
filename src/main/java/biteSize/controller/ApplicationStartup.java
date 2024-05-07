@@ -1,6 +1,9 @@
 package biteSize.controller;
 
 import biteSize.utilities.PropertiesLoader;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -21,11 +24,10 @@ import java.util.Properties;
 
 public class ApplicationStartup extends HttpServlet implements PropertiesLoader {
 
+    private final Logger logger = LogManager.getLogger(this.getClass());
+
     public void init() throws ServletException {
         Properties properties = loadProperties("database.properties");
         ServletContext servletContext = getServletContext();
-
-        servletContext.setAttribute("properties", properties);
     }
-
 }

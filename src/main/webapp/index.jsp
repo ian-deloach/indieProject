@@ -7,7 +7,6 @@
         <title>Bite Size</title>
     </head>
     <body>
-        <h1>Bite Size</h1>
         <c:import url="components/navbar.jsp"/>
         <c:choose>
             <c:when test="${empty userName}">

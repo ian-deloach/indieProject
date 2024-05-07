@@ -41,6 +41,8 @@ public class Task {
     @ManyToOne
     private User user;
 
+
+
     /**
      * Getter for name
      * @return the name

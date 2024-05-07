@@ -45,6 +45,12 @@ public class Schedule {
 
     }
 
+    public void createNewSchedule() {
+
+
+
+    }
+
     /**
      * Getter for expiration date
      * @return expiration date
