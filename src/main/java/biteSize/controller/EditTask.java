@@ -78,5 +78,20 @@ public class EditTask extends HttpServlet {
             Task task = (Task)taskDao.getById(id);
             name = task.getName();
         }
+
+        if (Objects.equals(urgency, "on")) {
+            urgency = "Urgent";
+        }
+
+        Task taskToUpdate = (Task)taskDao.getById(id);
+        taskToUpdate.setName(name);
+        taskToUpdate.setUrgency(urgency);
+        taskToUpdate.setDescription(description);
+        taskDao.update(taskToUpdate);
+
+        // TODO Find a way to get the confirmation messages to work properly
+        RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
+        dispatcher.forward(req, resp);
+
     }
 }
