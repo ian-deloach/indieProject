@@ -12,7 +12,7 @@
         <thead>
             <th>Name</th>
             <th>Urgency</th>
-            <th>Deadline</th>
+            <!--<th>Deadline</th>-->
             <th>Description</th>
         </thead>
         <tbody>
@@ -20,7 +20,8 @@
                 <tr>
                     <td><a href="/editTask?id=${task.id}">${task.name}</a></td>
                     <td>${task.urgency}</td>
-                    <td>${task.deadline}</td>
+                    <!--TODO Deadline looks gross right now. Find a way to format it first.-->
+                    <%--<td>${task.deadline}</td>--%>
                     <td>${task.description}</td>
                 </tr>
             </c:forEach>
