@@ -7,12 +7,13 @@
         <title>Bite Size</title>
     </head>
     <body>
-        <c:import url="components/navbar.jsp"/>
         <c:choose>
             <c:when test="${empty userName}">
+                <c:import url="components/guestNavbar.jsp"/>
                 <a href = "logIn">Log in</a>
             </c:when>
             <c:otherwise>
+                <c:import url="components/navbar.jsp"/>
                 <h3>Welcome ${userName}</h3>
                 <p>Your email: ${userEmail}</p>
             </c:otherwise>
