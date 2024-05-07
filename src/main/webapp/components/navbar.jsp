@@ -12,6 +12,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/BiteSize_war/schedules">Schedules</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/BiteSize_war/add-task">Add Task</a>
+                </li>
             </ul>
         </div>
     </div>

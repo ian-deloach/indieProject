@@ -190,6 +190,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
             userDao.insert(newUser);
         }
 
+        List<User> newFoundUsers = userDao.getPropertyEqual("email", userEmail);
+        session.setAttribute("userId", newFoundUsers.get(0).getId());
+
         return userName;
     }
 
