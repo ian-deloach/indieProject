@@ -27,7 +27,11 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     public void init() throws ServletException {
+
         //Properties properties = loadProperties("database.properties");
-        ServletContext servletContext = getServletContext();
+
+        Properties databaseProperties = loadProperties("database.properties");
+        Properties cognitoProperties = loadProperties("cognito.properties");
+
     }
 }
