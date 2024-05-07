@@ -1,5 +1,7 @@
 package biteSize.controller;
 
+import biteSize.entity.User;
+import biteSize.persistence.GenericDao;
 import biteSize.utilities.PropertiesLoader;
 import biteSize.auth.*;
 
@@ -18,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.URI;
@@ -40,7 +43,6 @@ import java.util.stream.Collectors;
 @WebServlet(
         urlPatterns = {"/auth"}
 )
-// TODO if something goes wrong it this process, route to an error page. Currently, errors are only caught and logged.
 
 public class Auth extends HttpServlet implements PropertiesLoader {
     Properties properties;
@@ -74,20 +76,28 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String authCode = req.getParameter("code");
         String userName = null;
 
+        HttpSession session = req.getSession();
+
         if (authCode == null) {
-            //TODO forward to an error page or back to the login
+            session.setAttribute("errorMessage", "Nothing was entered during Log In.");
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
+            dispatcher.forward(req, resp);
         } else {
             HttpRequest authRequest = buildAuthRequest(authCode);
             try {
                 TokenResponse tokenResponse = getToken(authRequest);
-                userName = validate(tokenResponse);
-                req.setAttribute("userName", userName);
+                userName = validate(tokenResponse, session);
+                session.setAttribute("userName", userName);
             } catch (IOException e) {
                 logger.error("Error getting or validating the token: " + e.getMessage(), e);
-                //TODO forward to an error page
+                session.setAttribute("errorMessage", "Error with user validation.");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
+                dispatcher.forward(req, resp);
             } catch (InterruptedException e) {
                 logger.error("Error getting token from Cognito oauth url " + e.getMessage(), e);
-                //TODO forward to an error page
+                session.setAttribute("errorMessage", "Connection was interrupted when logging in. Please try again.");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/error.jsp");
+                dispatcher.forward(req, resp);
             }
         }
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
@@ -127,7 +137,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @return
      * @throws IOException
      */
-    private String validate(TokenResponse tokenResponse) throws IOException {
+    private String validate(TokenResponse tokenResponse, HttpSession session) throws IOException {
+
+        GenericDao<User> userDao = new GenericDao(User.class);
+
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
@@ -135,12 +148,10 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         String keyId = tokenHeader.getKid();
         String alg = tokenHeader.getAlg();
 
-        // todo pick proper key from the two - it just so happens that the first one works for my case
         // Use Key's N and E
         BigInteger modulus = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getN()));
         BigInteger exponent = new BigInteger(1, org.apache.commons.codec.binary.Base64.decodeBase64(jwks.getKeys().get(0).getE()));
 
-        // TODO the following is "happy path", what if the exceptions are caught?
         // Create a public key
         PublicKey publicKey = null;
         try {
@@ -164,13 +175,23 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         // Verify the token
         DecodedJWT jwt = verifier.verify(tokenResponse.getIdToken());
-        String userName = jwt.getClaim("cognito:username").asString();
+        String userName = jwt.getClaim("nickname").asString();
+        String userEmail = jwt.getClaim("email").asString();
+        session.setAttribute("userEmail", userEmail);
         logger.debug("here's the username: " + userName);
 
         logger.debug("here are all the available claims: " + jwt.getClaims());
 
-        // TODO decide what you want to do with the info!
-        // for now, I'm just returning username for display back to the browser
+        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
+        if (foundUsers.isEmpty()) {
+            User newUser = new User();
+            newUser.setName(userName);
+            newUser.setEmail(userEmail);
+            userDao.insert(newUser);
+        }
+
+        List<User> newFoundUsers = userDao.getPropertyEqual("email", userEmail);
+        session.setAttribute("userId", newFoundUsers.get(0).getId());
 
         return userName;
     }
@@ -232,7 +253,6 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * Read in the cognito props file and get/set the client id, secret, and required urls
      * for authenticating a user.
      */
-    // TODO This code appears in a couple classes, consider using a startup servlet similar to adv java project
     private void loadProperties() {
         try {
             properties = loadProperties("/cognito.properties");

@@ -7,13 +7,16 @@
         <title>Bite Size</title>
     </head>
     <body>
-        <c:import url="components/navbar.jsp"/>
         <c:choose>
             <c:when test="${empty userName}">
-                <a href = "logIn">Log in</a>
+                <c:import url="components/guestNavbar.jsp"/>
+                <h1>Welcome to BiteSize!</h1>
+                <p>As you can probably see, I did not finish on time :(</p>
             </c:when>
             <c:otherwise>
-                <h3>Welcome ${userName}</h3>
+                <c:import url="components/navbar.jsp"/>
+                <h3>Welcome, ${userName}!</h3>
+                <p>This would be where I put the daily schedule that the app generates... if it worked...</p>
             </c:otherwise>
         </c:choose>
         <c:import url="components/bootstrapBody.jsp"/>

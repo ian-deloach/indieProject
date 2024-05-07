@@ -7,20 +7,23 @@
 </head>
 <body>
 <c:import url="components/navbar.jsp"/>
+<!--TODO Make every page only accessible if you have a valid email in the session -->
+    <h2>All Tasks</h2>
 
     <table>
         <thead>
             <th>Name</th>
             <th>Urgency</th>
-            <th>Deadline</th>
+            <!--<th>Deadline</th>-->
             <th>Description</th>
         </thead>
         <tbody>
             <c:forEach var="task" items="${tasks}">
                 <tr>
-                    <td>${task.name}</td>
+                    <td><a href="/BiteSize_war/edit-task?id=${task.id}">${task.name}</a></td>
                     <td>${task.urgency}</td>
-                    <td>${task.deadline}</td>
+                    <!--TODO Deadline looks gross right now. Find a way to format it first.-->
+                    <%--<td>${task.deadline}</td>--%>
                     <td>${task.description}</td>
                 </tr>
             </c:forEach>
