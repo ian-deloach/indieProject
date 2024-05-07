@@ -10,7 +10,7 @@
                     <a class="nav-link active" aria-current="page" href="/BiteSize_war/tasks">My Tasks</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Schedules</a>
+                    <a class="nav-link" href="/BiteSize_war/schedules">Schedules</a>
                 </li>
             </ul>
         </div>
