@@ -1,9 +1,6 @@
 package biteSize.entity;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import biteSize.entity.Task;
 
@@ -57,11 +54,14 @@ public class Schedule {
 
         List<Task> taskList = user.getTasks();
         List<Task> urgentTasks = new ArrayList<Task>();
+        List<Task> regularTasks = new ArrayList<Task>();
         List<Task> newSchedule = new ArrayList<Task>();
 
         for (Task task : taskList) {
             if (Objects.equals(task.getUrgency(), "Urgent")) {
                 urgentTasks.add(task);
+            } else {
+                regularTasks.add(task);
             }
         }
 
