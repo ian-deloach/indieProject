@@ -11,14 +11,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Servlet to send task information to an edit form
+ */
+
 @WebServlet(
         name = "editTask",
         urlPatterns = {"/edit-task"}
 )
 
-/**
- * Servlet to send task information to an edit form
- */
 public class EditTask extends HttpServlet {
 
     /**

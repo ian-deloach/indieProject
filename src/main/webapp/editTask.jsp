@@ -24,7 +24,7 @@
         <br>
         <textarea id="description" name="description" rows="5" cols="30">${task.description}</textarea>
         <br>
-        <input type="submit" value="Edit Task">
+        <input type="submit" value="Edit Task"> <a id="deleteLink" href="/BiteSize_war/delete-task?id=${task.id}">Delete Task</a>
 
         <input type="hidden" id="taskId" name="taskId" value="${task.id}">
     </form>
