@@ -11,6 +11,9 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * The type Schedule.
+ */
 // This will be a many-to-many relationship with tasks. Make a separate table.
 @Entity
 @Table(name="schedule")
@@ -38,6 +41,9 @@ public class Schedule {
 
     @Column(name="name")
     private String name;
+
+    @ManyToOne
+    private User user;
 
 
     /**
@@ -178,5 +184,29 @@ public class Schedule {
      */
     public int getId() {
         return id;
+    }
+
+    /**
+     * Setter for id
+     * @param id the new id
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Getter for schedule's user
+     * @return the user
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Setter for the schedule's user
+     * @param user the new user
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 }
