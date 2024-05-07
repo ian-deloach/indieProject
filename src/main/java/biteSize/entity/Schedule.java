@@ -88,6 +88,11 @@ public class Schedule {
         return newSchedule;
     }
 
+    /**
+     * Generates a random task from the list of regular tasks
+     * @param tasks The list of regular tasks
+     * @return A list of 4 random tasks
+     */
     public List<Task> generateRandomTasks(List<Task> tasks) {
 
         final Logger logger = LogManager.getLogger(this.getClass());
@@ -107,6 +112,11 @@ public class Schedule {
         return randomTasks;
     }
 
+    /**
+     * Randomly selects 1 random high priority task
+     * @param urgentTasks The list of urgent tasks
+     * @return The random urgent task
+     */
     public Task generateUrgentTask(List<Task> urgentTasks) {
 
         final Logger logger = LogManager.getLogger(this.getClass());
