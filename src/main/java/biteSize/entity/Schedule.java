@@ -61,6 +61,8 @@ public class Schedule {
      */
     public List<Task> generateSchedule(int id) {
 
+        final Logger logger = LogManager.getLogger(this.getClass());
+
         GenericDao userDao = new GenericDao(User.class);
         User user = (User)userDao.getById(id);
 
@@ -78,6 +80,10 @@ public class Schedule {
 
         List<Task> newSchedule = generateRandomTasks(regularTasks);
         newSchedule.add(generateUrgentTask(urgentTasks));
+
+        for(Task task : newSchedule) {
+            logger.info("New Schedule Task: " + task.getName());
+        }
 
         return newSchedule;
     }

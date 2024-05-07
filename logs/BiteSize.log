@@ -2258,3 +2258,13 @@ java.lang.NullPointerException: inStream parameter is null
 [INFO ] 2024-05-07 05:10:38.716 [main] Schedule - Here is the random number: 1
 [INFO ] 2024-05-07 05:10:38.716 [main] Schedule - Here is the random number: 0
 [INFO ] 2024-05-07 05:48:52.450 [main] Schedule - The urgent task: biteSize.entity.Task@3516b881
+[INFO ] 2024-05-07 06:00:12.265 [main] Schedule - New Schedule Task: REST Project
+[INFO ] 2024-05-07 06:00:12.266 [main] Schedule - New Schedule Task: Eat Dinner
+[INFO ] 2024-05-07 06:00:12.266 [main] Schedule - New Schedule Task: Eat Lunch
+[INFO ] 2024-05-07 06:00:12.266 [main] Schedule - New Schedule Task: Go To Bed
+[INFO ] 2024-05-07 06:01:05.315 [main] Schedule - New Schedule Task: Eat Dinner
+[INFO ] 2024-05-07 06:01:05.316 [main] Schedule - New Schedule Task: Eat Lunch
+[INFO ] 2024-05-07 06:01:05.316 [main] Schedule - New Schedule Task: REST Project
+[INFO ] 2024-05-07 06:01:05.316 [main] Schedule - New Schedule Task: BiteSize
+[INFO ] 2024-05-07 06:11:50.593 [main] UserTest - Task: Apply For Jobs
+[INFO ] 2024-05-07 06:11:50.594 [main] UserTest - Task: Hang out with Ian
