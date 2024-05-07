@@ -1,5 +1,6 @@
 //package biteSize.persistence;
 //
+//import biteSize.entity.Schedule;
 //import biteSize.entity.Task;
 //import biteSize.entity.User;
 //import junit.framework.TestCase;
@@ -53,9 +54,21 @@
 //
 //    // Tests a successful user delete
 //    public void testUserDelete() {
+//
+//        GenericDao<Task> taskDao = new GenericDao(Task.class);
+//        GenericDao<Schedule> scheduleDao = new GenericDao(Schedule.class);
+//
 //        User userToDelete = (User)dao.getById(1);
 //        dao.delete(userToDelete);
 //        assertNull(dao.getById(1));
+//
+//        List<Task> allTasks = taskDao.getAll();
+//
+//        List<Schedule> allSchedules = scheduleDao.getAll();
+//
+//        assertEquals(3, allTasks.size());
+//
+//        assertEquals(1, allSchedules.size());
 //    }
 //
 //    // Tests getting all users
@@ -79,14 +92,4 @@
 //        assertEquals("Arianna", users.get(1).getName());
 //    }
 //
-//    // Test Tasks
-//
-//    // Testing getting all tasks
-//    public void testGetAllTasks() {
-//        List<Task> tasks = dao.getAll();
-//        for(Task task : tasks) {
-//            logger.info(task.getName());
-//        }
-//        assertEquals(3, tasks.size());
-//    }
 //}
