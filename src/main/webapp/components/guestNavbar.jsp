@@ -7,17 +7,9 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/BiteSize_war/tasks">My Tasks</a>
+                    <a class="nav-link active" aria-current="page" href="/BiteSize_war/logIn">Log In / Sign Up</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/BiteSize_war/schedules">Schedules</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/BiteSize_war/add-task">Add Task</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/BiteSize_war/log-out">Log Out</a>
-                </li>
+
             </ul>
         </div>
     </div>

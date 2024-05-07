@@ -1,6 +1,7 @@
 package biteSize.controller;
 
 import biteSize.entity.Task;
+import biteSize.entity.User;
 import biteSize.persistence.GenericDao;
 
 import javax.servlet.*;
@@ -19,8 +20,13 @@ public class GetTasks extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        GenericDao taskDao = new GenericDao(Task.class);
-        List<Task> taskList = taskDao.getAll();
+        HttpSession session = req.getSession();
+        GenericDao userDao = new GenericDao(User.class);
+        String userEmail = (String)session.getAttribute("userEmail");
+
+        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
+        User user = foundUsers.get(0);
+        List<Task> taskList = user.getTasks();
 
         req.setAttribute("tasks", taskList);
 
@@ -28,4 +34,24 @@ public class GetTasks extends HttpServlet {
         dispatcher.forward(req, resp);
 
     }
+
+    //TODO These are duplicate. Can be cleaned up when I have more time :)
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        HttpSession session = req.getSession();
+        GenericDao userDao = new GenericDao(User.class);
+        String userEmail = (String) session.getAttribute("userEmail");
+
+        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
+        User user = foundUsers.get(0);
+        List<Task> taskList = user.getTasks();
+
+        req.setAttribute("tasks", taskList);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/tasks.jsp");
+        dispatcher.forward(req, resp);
+
+    }
+
 }
