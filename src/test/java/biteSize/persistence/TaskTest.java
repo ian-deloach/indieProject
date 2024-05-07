@@ -37,4 +37,13 @@
 //
 //        assertEquals(4, testList.size());
 //    }
+//
+//    public void testUpdateTask() {
+//        Task taskToUpdate = (Task)dao.getById(1);
+//        taskToUpdate.setName("Present BiteSize");
+//        dao.update(taskToUpdate);
+//
+//        Task retrievedTask = (Task)dao.getById(1);
+//        assertEquals("Present BiteSize", retrievedTask.getName());
+//    }
 //}
