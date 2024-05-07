@@ -1,6 +1,7 @@
 package biteSize.controller;
 
 import biteSize.entity.Task;
+import biteSize.entity.User;
 import biteSize.persistence.GenericDao;
 
 import javax.servlet.*;
@@ -19,10 +20,13 @@ public class GetTasks extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        GenericDao taskDao = new GenericDao(Task.class);
         HttpSession session = req.getSession();
+        GenericDao userDao = new GenericDao(User.class);
         String userEmail = (String)session.getAttribute("userEmail");
-        List<Task> taskList = taskDao.getAll();
+
+        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
+        User user = foundUsers.get(0);
+        List<Task> taskList = user.getTasks();
 
         req.setAttribute("tasks", taskList);
 

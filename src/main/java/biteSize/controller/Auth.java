@@ -1,5 +1,7 @@
 package biteSize.controller;
 
+import biteSize.entity.User;
+import biteSize.persistence.GenericDao;
 import biteSize.utilities.PropertiesLoader;
 import biteSize.auth.*;
 
@@ -131,6 +133,9 @@ public class Auth extends HttpServlet implements PropertiesLoader {
      * @throws IOException
      */
     private String validate(TokenResponse tokenResponse, HttpSession session) throws IOException {
+
+        GenericDao<User> userDao = new GenericDao(User.class);
+
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
 
@@ -173,6 +178,14 @@ public class Auth extends HttpServlet implements PropertiesLoader {
         logger.debug("here's the username: " + userName);
 
         logger.debug("here are all the available claims: " + jwt.getClaims());
+
+        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
+        if (foundUsers.isEmpty()) {
+            User newUser = new User();
+            newUser.setName(userName);
+            newUser.setEmail(userEmail);
+            userDao.insert(newUser);
+        }
 
         return userName;
     }
