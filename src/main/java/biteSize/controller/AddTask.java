@@ -21,18 +21,36 @@ import java.util.Objects;
         urlPatterns = {"/add-task"}
 )
 
+/**
+ * Servlet to create new tasks
+ */
 public class AddTask extends HttpServlet {
 
+    /**
+     * Simply redirects to the addTask jsp
+     * @param req the request
+     * @param resp the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/addTask.jsp");
         dispatcher.forward(req, resp);
     }
+
+    /**
+     * "Validates" user input and adds the new task to the database
+     * @param req the request
+     * @param resp the response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String name = req.getParameter("taskName");
-        String deadlineString = req.getParameter("deadline");
+//        String deadlineString = req.getParameter("deadline");
         String urgency = req.getParameter("urgent");
         String description = req.getParameter("description");
         String dispatcherUrl = "/tasks";
@@ -42,16 +60,16 @@ public class AddTask extends HttpServlet {
 
         // TODO All of the 'validations' are band-aid fixes. They can be improved.
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date deadline = null;
-
-        if (!Objects.equals(deadlineString, "")) {
-            try {
-                deadline = format.parse(deadlineString);
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-        }
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        Date deadline = null;
+//
+//        if (!Objects.equals(deadlineString, "")) {
+//            try {
+//                deadline = format.parse(deadlineString);
+//            } catch (ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
 
         if (Objects.equals(urgency, "on")) {
             urgency = "Urgent";
@@ -66,7 +84,7 @@ public class AddTask extends HttpServlet {
 
         Task newTask = new Task();
         newTask.setName(name);
-        newTask.setDeadline(deadline);
+        //newTask.setDeadline(deadline);
         newTask.setUrgency(urgency);
         newTask.setDescription(description);
         newTask.setUser(user);

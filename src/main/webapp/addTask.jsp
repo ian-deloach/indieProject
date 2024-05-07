@@ -10,7 +10,7 @@
 
     <c:choose>
         <c:when test="${empty addMessage}">
-            <h1>Add Task</h1>
+            <h2>Add Task</h2>
         </c:when>
     <c:otherwise>
             <h3>${addMessage}</h3>

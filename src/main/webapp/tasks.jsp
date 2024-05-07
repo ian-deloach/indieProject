@@ -7,6 +7,7 @@
 </head>
 <body>
 <c:import url="components/navbar.jsp"/>
+    <h2>All Tasks</h2>
 
     <table>
         <thead>

@@ -7,25 +7,26 @@
 </head>
 <body>
 <c:import url="components/navbar.jsp"/>
+    <h2>Schedules</h2>
 
-<table>
-    <thead>
-    <th>Name</th>
-    <th>Expiration Date:</th>
-    <th>Date Created:</th>
-    </thead>
-    <tbody>
-    <c:forEach var="schedule" items="${schedules}">
-        <tr>
-            <td>${schedule.name}</td>
-            <td>${schedule.expirationDate}</td>
-            <td>${schedule.dateCreated}</td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
+    <table>
+        <thead>
+        <th>Name</th>
+        <th>Expiration Date:</th>
+        <th>Date Created:</th>
+        </thead>
+        <tbody>
+        <c:forEach var="schedule" items="${schedules}">
+            <tr>
+                <td>${schedule.name}</td>
+                <td>${schedule.expirationDate}</td>
+                <td>${schedule.dateCreated}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 
 
-<c:import url="components/bootstrapBody.jsp"/>
+    <c:import url="components/bootstrapBody.jsp"/>
 </body>
 </html>
