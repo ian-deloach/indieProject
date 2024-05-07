@@ -27,7 +27,10 @@ CREATE TABLE `schedule` (
                             `date_created` date DEFAULT (curdate()),
                             `expiration_date` date DEFAULT NULL,
                             `name` varchar(50) DEFAULT NULL,
-                            PRIMARY KEY (`id`)
+                            `user_id` int DEFAULT NULL,
+                            PRIMARY KEY (`id`),
+                            KEY `schedule_user_id_fk` (`user_id`),
+                            CONSTRAINT `schedule_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -37,7 +40,7 @@ CREATE TABLE `schedule` (
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `schedule` VALUES (1,'2024-05-03',NULL,'May 3rd'),(2,'2024-05-03',NULL,'May 10th');
+INSERT INTO `schedule` VALUES (1,'2024-05-03','2024-05-18','Ugh',1),(2,'2024-05-03','2024-05-07','Wahoo',2);
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-07  4:21:10
+-- Dump completed on 2024-05-07  5:55:57
