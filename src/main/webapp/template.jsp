@@ -9,6 +9,7 @@
 <body>
     <c:import url="components/navbar.jsp"/>
 
+    <c:import url="components/footer.jsp"/>
     <c:import url="components/bootstrapBody.jsp"/>
 </body>
 </html>

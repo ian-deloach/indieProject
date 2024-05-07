@@ -35,6 +35,7 @@
         <input type="submit" value="Add Task">
     </form>
 
+<c:import url="components/footer.jsp"/>
 <c:import url="components/bootstrapBody.jsp"/>
 </body>
 </html>

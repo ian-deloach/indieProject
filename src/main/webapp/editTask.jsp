@@ -29,6 +29,7 @@
         <input type="hidden" id="taskId" name="taskId" value="${task.id}">
     </form>
 
+<c:import url="components/footer.jsp"/>
 <c:import url="components/bootstrapBody.jsp"/>
 </body>
 </html>

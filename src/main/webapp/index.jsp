@@ -19,6 +19,9 @@
                 <p>This would be where I put the daily schedule that the app generates... if it worked...</p>
             </c:otherwise>
         </c:choose>
+
+
         <c:import url="components/bootstrapBody.jsp"/>
     </body>
+    <c:import url="components/footer.jsp"/>
     </html>
