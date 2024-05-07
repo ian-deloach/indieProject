@@ -21,9 +21,10 @@
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName">
         <br>
+        <!--TODO remember to enable deadlines at some point
         <label for="deadline">Deadline (Optional):</label>
         <input type="date" id="deadline" name="deadline">
-        <br>
+        <br>-->
         <label for="urgent">Urgent</label>
         <input type="checkbox" id="urgent" name="urgent">
         <br>

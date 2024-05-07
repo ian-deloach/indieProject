@@ -20,10 +20,14 @@ public class EditTask extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        HttpSession session = req.getSession();
+        GenericDao taskDao = new GenericDao(Task.class);
+
         int id = Integer.parseInt(req.getParameter("id"));
-        session.setAttribute("taskId", id);
+        req.setAttribute("taskId", id);
         String url = "/editTask.jsp";
+
+        Task task = (Task)taskDao.getById(id);
+        req.setAttribute("task", task);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher(url);
         dispatcher.forward(req, resp);
