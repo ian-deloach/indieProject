@@ -47,6 +47,12 @@ public class Schedule {
 
     }
 
+    /**
+     * Generates a list of tasks for a new schedule. Each schedule has 4 regular
+     * tasks and 1 urgent task.
+     * @param id The id of the user
+     * @return The list of tasks for the new schedule
+     */
     public List<Task> generateSchedule(int id) {
 
         GenericDao userDao = new GenericDao(User.class);
@@ -55,7 +61,6 @@ public class Schedule {
         List<Task> taskList = user.getTasks();
         List<Task> urgentTasks = new ArrayList<Task>();
         List<Task> regularTasks = new ArrayList<Task>();
-        List<Task> newSchedule = new ArrayList<Task>();
 
         for (Task task : taskList) {
             if (Objects.equals(task.getUrgency(), "Urgent")) {
@@ -65,12 +70,29 @@ public class Schedule {
             }
         }
 
-        return urgentTasks;
+        List<Task> newSchedule = generateRandomTasks(regularTasks);
+
+
+        return newSchedule;
     }
 
-    public Task getRandomTaskFromList(List<Task> tasks) {
+    public List<Task> generateRandomTasks(List<Task> tasks) {
 
-        return null;
+        final Logger logger = LogManager.getLogger(this.getClass());
+
+        Random rng = new Random();
+        int randomNumber;
+
+        List<Task> randomTasks = new ArrayList<Task>();
+
+        while (randomTasks.size() < 4 && !tasks.isEmpty()) {
+            randomNumber = rng.nextInt(tasks.size());
+            logger.info("Here is the random number: " + randomNumber);
+            randomTasks.add(tasks.get(randomNumber));
+            tasks.remove(randomNumber);
+        }
+
+        return randomTasks;
     }
 
     /**

@@ -2235,3 +2235,25 @@ java.lang.NullPointerException: inStream parameter is null
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) [?:?]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) [?:?]
 	at java.lang.Thread.run(Thread.java:834) [?:?]
+[INFO ] 2024-05-07 04:52:40.740 [main] Schedule - Here is the random number: 4
+[INFO ] 2024-05-07 04:54:58.872 [main] Schedule - Here is the random number: 4
+[INFO ] 2024-05-07 04:56:51.004 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 04:58:05.163 [main] Schedule - Here is the random number: 0
+[INFO ] 2024-05-07 04:58:05.164 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 04:58:05.164 [main] Schedule - Here is the random number: 0
+[INFO ] 2024-05-07 04:58:05.164 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 05:01:35.838 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 05:02:10.798 [main] Schedule - Here is the random number: 0
+[INFO ] 2024-05-07 05:02:30.836 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 05:02:33.249 [main] Schedule - Here is the random number: 0
+[INFO ] 2024-05-07 05:03:32.044 [main] Schedule - Here is the random number: 0
+[INFO ] 2024-05-07 05:03:37.872 [main] Schedule - Here is the random number: 0
+[INFO ] 2024-05-07 05:03:40.089 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 05:03:41.898 [main] Schedule - Here is the random number: 1//
+[INFO ] 2024-05-07 05:08:59.293 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 05:08:59.294 [main] Schedule - Here is the random number: 0
+[INFO ] 2024-05-07 05:08:59.294 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 05:08:59.294 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 05:10:38.715 [main] Schedule - Here is the random number: 0
+[INFO ] 2024-05-07 05:10:38.716 [main] Schedule - Here is the random number: 1
+[INFO ] 2024-05-07 05:10:38.716 [main] Schedule - Here is the random number: 0
