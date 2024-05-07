@@ -67,7 +67,7 @@ CREATE TABLE `schedule_task` (
 
 LOCK TABLES `schedule_task` WRITE;
 /*!40000 ALTER TABLE `schedule_task` DISABLE KEYS */;
-INSERT INTO `schedule_task` VALUES (1,1),(2,2),(2,3);
+INSERT INTO `schedule_task` VALUES (1,1),(2,2),(1,3);
 /*!40000 ALTER TABLE `schedule_task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-07  5:55:57
+-- Dump completed on 2024-05-07  7:32:26
