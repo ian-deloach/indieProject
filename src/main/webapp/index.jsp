@@ -20,8 +20,7 @@
             </c:otherwise>
         </c:choose>
 
-
+        <c:import url="components/footer.jsp"/>
         <c:import url="components/bootstrapBody.jsp"/>
     </body>
-    <c:import url="components/footer.jsp"/>
     </html>
