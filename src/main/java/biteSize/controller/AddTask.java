@@ -1,6 +1,7 @@
 package biteSize.controller;
 
 import biteSize.entity.Task;
+import biteSize.entity.Theme;
 import biteSize.entity.User;
 import biteSize.persistence.GenericDao;
 
@@ -95,6 +96,13 @@ public class AddTask extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
         session.setAttribute("addMessage", "Added " + name);
         dispatcher.forward(req, resp);
+
+    }
+
+    private List<Theme> getThemes() {
+
+        GenericDao themeDao = new GenericDao(Theme.class);
+        GenericDao userDao = new GenericDao(User.class);
 
     }
 
