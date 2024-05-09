@@ -8,6 +8,7 @@
 <body>
 <c:import url="components/navbar.jsp"/>
 
+<!-- TODO Currently, this is a bug. Does not delete itself properly -->
     <c:choose>
         <c:when test="${empty addMessage}">
             <h2>Add Task</h2>
@@ -17,7 +18,7 @@
     </c:otherwise>
     </c:choose>
 
-    <form action="/BiteSize_war/add-task" method="POST">
+    <form action="add-task" method="POST">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName">
         <br>
