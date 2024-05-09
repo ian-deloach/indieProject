@@ -1,22 +1,22 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/BiteSize_war/">BiteSize</a>
+        <a class="navbar-brand" href="/">BiteSize</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/BiteSize_war/tasks">My Tasks</a>
+                    <a class="nav-link active" aria-current="page" href="tasks">My Tasks</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/BiteSize_war/schedules">Schedules</a>
+                    <a class="nav-link" href="schedules">Schedules</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/BiteSize_war/add-task">Add Task</a>
+                    <a class="nav-link" href="add-task">Add Task</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/BiteSize_war/log-out">Log Out</a>
+                    <a class="nav-link" href="log-out">Log Out</a>
                 </li>
             </ul>
         </div>

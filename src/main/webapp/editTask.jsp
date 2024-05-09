@@ -9,7 +9,7 @@
 <c:import url="components/navbar.jsp"/>
     <h2>Edit Task</h2>
 
-    <form action="/BiteSize_war/edit-task" method="POST">
+    <form action="edit-task" method="POST">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName" value="${task.name}">
         <br>
@@ -24,7 +24,7 @@
         <br>
         <textarea id="description" name="description" rows="5" cols="30">${task.description}</textarea>
         <br>
-        <input type="submit" value="Edit Task"> <a id="deleteLink" href="/BiteSize_war/delete-task?id=${task.id}">Delete Task</a>
+        <input type="submit" value="Edit Task"> <a id="deleteLink" href="delete-task?id=${task.id}">Delete Task</a>
 
         <input type="hidden" id="taskId" name="taskId" value="${task.id}">
     </form>
