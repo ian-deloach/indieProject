@@ -104,6 +104,8 @@ public class AddTask extends HttpServlet {
         GenericDao themeDao = new GenericDao(Theme.class);
         GenericDao userDao = new GenericDao(User.class);
 
+        return null;
+
     }
 
 }

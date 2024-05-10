@@ -91,7 +91,7 @@ CREATE TABLE `task` (
                         KEY `task_theme_id_fk` (`theme_id`),
                         CONSTRAINT `task_theme_id_fk` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`id`),
                         CONSTRAINT `task_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,34 +100,8 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES ('BiteSize','2024-05-01','Urgent','Indie Project',1,1,1),('Final Exam',NULL,NULL,'Final Exam for PHP',2,2,2),('REST Project','2024-05-07','Done','Build off of project 3',1,3,3),('Eat Breakfast',NULL,'Urgent','To start off the day',1,4,NULL),('Eat Lunch',NULL,NULL,'I guess I can skip this',1,5,NULL),('Eat Dinner',NULL,NULL,'Can\'t skip this one though',1,6,NULL),('Go To Bed',NULL,'Urgent','I\'ve been up for 30 hours',1,7,NULL),('Apply For Jobs',NULL,NULL,'Gotta start doing that because I\'m graduating',2,8,NULL),('Hang out with Ian',NULL,'Urgent','Thanks, Arianna.',2,9,NULL);
+INSERT INTO `task` VALUES ('BiteSize','2024-05-01','Urgent','After graduation project',1,1,1),('Final Exam',NULL,NULL,'Final Exam for PHP',1,2,2),('REST Project','2024-05-07','Done','Build off of project 3',1,3,3),('Eat Breakfast',NULL,'Urgent','To start off the day',1,4,NULL),('Eat Lunch',NULL,NULL,'I guess I can skip this',1,5,NULL),('Eat Dinner',NULL,NULL,'Can\'t skip this one though',1,6,NULL),('Go To Bed',NULL,'Urgent','I\'ve been up for 30 hours',1,7,NULL),('Apply For Jobs',NULL,NULL,'Gotta start doing that because I\'m graduating',2,8,NULL),('Hang out with Ian',NULL,'Urgent','Thanks, Arianna.',2,9,NULL),('Accounting',NULL,NULL,'Arianna\'s job',2,12,NULL);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `task_schedule`
---
-
-DROP TABLE IF EXISTS `task_schedule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `task_schedule` (
-                                 `task_id` int NOT NULL,
-                                 `schedule_id` int NOT NULL,
-                                 PRIMARY KEY (`schedule_id`,`task_id`),
-                                 KEY `id_idx` (`task_id`),
-                                 CONSTRAINT `schedule_id` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`id`),
-                                 CONSTRAINT `task_id` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `task_schedule`
---
-
-LOCK TABLES `task_schedule` WRITE;
-/*!40000 ALTER TABLE `task_schedule` DISABLE KEYS */;
-/*!40000 ALTER TABLE `task_schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -140,7 +114,10 @@ DROP TABLE IF EXISTS `theme`;
 CREATE TABLE `theme` (
                          `name` varchar(50) DEFAULT NULL,
                          `id` int NOT NULL AUTO_INCREMENT,
-                         PRIMARY KEY (`id`)
+                         `user_id` int DEFAULT NULL,
+                         PRIMARY KEY (`id`),
+                         KEY `theme_user_id_fk` (`user_id`),
+                         CONSTRAINT `theme_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -150,7 +127,7 @@ CREATE TABLE `theme` (
 
 LOCK TABLES `theme` WRITE;
 /*!40000 ALTER TABLE `theme` DISABLE KEYS */;
-INSERT INTO `theme` VALUES ('Java',1),('PHP',2),('JavaScript',3);
+INSERT INTO `theme` VALUES ('Java',1,1),('PHP',2,1),('JavaScript',3,1);
 /*!40000 ALTER TABLE `theme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-07 10:43:36
+-- Dump completed on 2024-05-09 19:01:58

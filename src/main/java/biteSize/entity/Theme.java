@@ -19,6 +19,9 @@ public class Theme {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+    @ManyToOne
+    private User user;
+
     @Column(name = "name")
     private String name;
 
@@ -39,6 +42,22 @@ public class Theme {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * Getter for the theme's user
+     * @return the User associated with the theme
+     */
+    public User getUser() {
+        return user;
+    }
+
+    /**
+     * Setter for the theme's user
+     * @param user the new User object
+     */
+    public void setUser(User user) {
+        this.user = user;
     }
 
     /**
