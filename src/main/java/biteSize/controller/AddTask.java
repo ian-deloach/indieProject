@@ -52,6 +52,8 @@ public class AddTask extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        UserController control = new UserController();
+
         String name = req.getParameter("taskName");
 //        String deadlineString = req.getParameter("deadline");
         String urgency = req.getParameter("urgent");

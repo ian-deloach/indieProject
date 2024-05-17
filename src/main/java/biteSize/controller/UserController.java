@@ -26,4 +26,13 @@ public class UserController {
         return foundUsers.get(0);
 
     }
+
+    public User getUserFromId(int id) {
+
+        GenericDao userDao = new GenericDao(User.class);
+        User foundUser = (User)userDao.getById(id);
+
+        return foundUser;
+
+    }
 }
