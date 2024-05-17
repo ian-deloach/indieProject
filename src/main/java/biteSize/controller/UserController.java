@@ -1,11 +1,29 @@
 package biteSize.controller;
 
 
+import biteSize.entity.Task;
+import biteSize.entity.User;
+import biteSize.persistence.GenericDao;
+
+import java.util.List;
+
 /*
     A class to modify or retrieve the user's information
     via the use of DAOs
     @author IanDeLoach
  */
 public class UserController {
-    //TODO Create method to get the user's information from their email
+
+    public User getUserFromEmail(String email) {
+
+        GenericDao userDao = new GenericDao(User.class);
+        List<User> foundUsers = userDao.getPropertyEqual("email", email);
+
+        if (foundUsers.isEmpty()) {
+            return null;
+        }
+
+        return foundUsers.get(0);
+
+    }
 }

@@ -6,7 +6,7 @@ import biteSize.persistence.GenericDao;
 
 import java.util.List;
 
-public class ThemesController {
+public class ThemeController {
 
     private List<Theme> getThemes(int id) {
         // TODO Create logic to get the current themes for the add themes dropdown
