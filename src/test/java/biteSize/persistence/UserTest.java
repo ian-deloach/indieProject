@@ -38,9 +38,9 @@ public class UserTest extends TestCase {
         User newUser = new User("Kobey", "kobey@gmail.com");
         dao.insert(newUser);
 
-        User insertedUser = (User)dao.getById(4);
+        User insertedUser = (User)dao.getById(5);
         assertEquals("Kobey", insertedUser.getName());
-        assertEquals(4, insertedUser.getId());
+        assertEquals(5, insertedUser.getId());
     }
 
     // Tests a successful user update
