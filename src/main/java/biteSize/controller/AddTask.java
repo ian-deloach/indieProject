@@ -100,6 +100,8 @@ public class AddTask extends HttpServlet {
     }
 
     private List<Theme> getThemes() {
+        // TODO Create logic to get the current themes for the add themes dropdown
+        // TODO Allow the edit tasks servlet to access this method
 
         GenericDao themeDao = new GenericDao(Theme.class);
         GenericDao userDao = new GenericDao(User.class);
