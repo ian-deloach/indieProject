@@ -29,7 +29,8 @@ public class AddTask extends HttpServlet {
 
     /**
      * Simply redirects to the addTask jsp
-     * @param req the request
+     *
+     * @param req  the request
      * @param resp the response
      * @throws ServletException
      * @throws IOException
@@ -42,7 +43,8 @@ public class AddTask extends HttpServlet {
 
     /**
      * "Validates" user input and adds the new task to the database
-     * @param req the request
+     *
+     * @param req  the request
      * @param resp the response
      * @throws ServletException
      * @throws IOException
@@ -93,21 +95,10 @@ public class AddTask extends HttpServlet {
         GenericDao taskDao = new GenericDao(Task.class);
         taskDao.insert(newTask);
 
+        // TODO Currently, this message doesn't delete as intended
         RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
         session.setAttribute("addMessage", "Added " + name);
         dispatcher.forward(req, resp);
 
     }
-
-    private List<Theme> getThemes() {
-        // TODO Create logic to get the current themes for the add themes dropdown
-        // TODO Allow the edit tasks servlet to access this method
-
-        GenericDao themeDao = new GenericDao(Theme.class);
-        GenericDao userDao = new GenericDao(User.class);
-
-        return null;
-
-    }
-
 }
