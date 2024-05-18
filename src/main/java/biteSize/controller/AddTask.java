@@ -1,6 +1,7 @@
 package biteSize.controller;
 
 import biteSize.entity.Task;
+import biteSize.entity.Theme;
 import biteSize.entity.User;
 import biteSize.persistence.GenericDao;
 
@@ -28,7 +29,8 @@ public class AddTask extends HttpServlet {
 
     /**
      * Simply redirects to the addTask jsp
-     * @param req the request
+     *
+     * @param req  the request
      * @param resp the response
      * @throws ServletException
      * @throws IOException
@@ -41,13 +43,16 @@ public class AddTask extends HttpServlet {
 
     /**
      * "Validates" user input and adds the new task to the database
-     * @param req the request
+     *
+     * @param req  the request
      * @param resp the response
      * @throws ServletException
      * @throws IOException
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        UserController control = new UserController();
 
         String name = req.getParameter("taskName");
 //        String deadlineString = req.getParameter("deadline");
@@ -79,8 +84,7 @@ public class AddTask extends HttpServlet {
             name = "New Task";
         }
 
-        GenericDao userDao = new GenericDao(User.class);
-        User user = (User) userDao.getById(userId);
+        User user = control.getUserFromId(userId);
 
         Task newTask = new Task();
         newTask.setName(name);
@@ -92,10 +96,10 @@ public class AddTask extends HttpServlet {
         GenericDao taskDao = new GenericDao(Task.class);
         taskDao.insert(newTask);
 
+        // TODO Currently, this message doesn't delete as intended
         RequestDispatcher dispatcher = req.getRequestDispatcher(dispatcherUrl);
         session.setAttribute("addMessage", "Added " + name);
         dispatcher.forward(req, resp);
 
     }
-
 }

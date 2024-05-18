@@ -18,6 +18,8 @@
     </c:otherwise>
     </c:choose>
 
+    <!--TODO Create dynamic theme dropdown list -->
+
     <form action="add-task" method="POST">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName">

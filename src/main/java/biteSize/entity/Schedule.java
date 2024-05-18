@@ -2,6 +2,7 @@ package biteSize.entity;
 
 import java.util.*;
 
+import biteSize.controller.UserController;
 import biteSize.entity.Task;
 
 import biteSize.persistence.GenericDao;
@@ -63,8 +64,8 @@ public class Schedule {
 
         final Logger logger = LogManager.getLogger(this.getClass());
 
-        GenericDao userDao = new GenericDao(User.class);
-        User user = (User)userDao.getById(id);
+        UserController userControl = new UserController();
+        User user = userControl.getUserFromId(id);
 
         List<Task> taskList = user.getTasks();
         List<Task> urgentTasks = new ArrayList<Task>();
