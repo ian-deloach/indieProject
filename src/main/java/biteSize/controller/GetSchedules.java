@@ -22,12 +22,11 @@ public class GetSchedules extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        UserController userControl = new UserController();
         HttpSession session = req.getSession();
-        GenericDao userDao = new GenericDao(User.class);
         String userEmail = (String)session.getAttribute("userEmail");
 
-        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
-        User user = foundUsers.get(0);
+        User user = userControl.getUserFromEmail(userEmail);
         List<Schedule> scheduleList = user.getSchedules();
 
         req.setAttribute("schedules", scheduleList);

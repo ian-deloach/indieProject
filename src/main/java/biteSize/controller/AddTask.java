@@ -84,8 +84,7 @@ public class AddTask extends HttpServlet {
             name = "New Task";
         }
 
-        GenericDao userDao = new GenericDao(User.class);
-        User user = (User) userDao.getById(userId);
+        User user = control.getUserFromId(userId);
 
         Task newTask = new Task();
         newTask.setName(name);
