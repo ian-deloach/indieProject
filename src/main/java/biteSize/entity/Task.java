@@ -46,16 +46,17 @@ public class Task {
      */
     public Task() {
         name = "My task";
-        urgency = "";
+        urgency = null;
     }
 
     /**
      * Constructor for a task class
      */
-    public Task(String name, String urgency, Theme theme) {
+    public Task(String name, String urgency, Theme theme, User user) {
         this.name = name;
         this.urgency = urgency;
         this.theme = theme;
+        this.user = user;
     }
 
 
