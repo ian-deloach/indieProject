@@ -15,10 +15,15 @@ public class TaskTest extends TestCase {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     GenericDao dao;
+    GenericDao themeDao;
+    GenericDao userDao;
 
     // Cleans the database before each test
     public void setUp() throws Exception {
         dao = new GenericDao(Task.class);
+        themeDao = new GenericDao(Theme.class);
+        userDao = new GenericDao(User.class);
+
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
     }
@@ -32,10 +37,9 @@ public class TaskTest extends TestCase {
         assertEquals(10, tasks.size());
     }
 
+    // Tests adding a single task to a user
     public void testInsertTask() {
-        GenericDao themeDao = new GenericDao(Theme.class);
         Theme theme = (Theme)themeDao.getById(1);
-        GenericDao userDao = new GenericDao(User.class);
         User user = (User)userDao.getById(1);
 
         Task newTask = new Task("Test task", null, theme, user);
