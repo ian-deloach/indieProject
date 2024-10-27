@@ -21,11 +21,10 @@ public class GetTasks extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        GenericDao userDao = new GenericDao(User.class);
+        UserController userControl = new UserController();
         String userEmail = (String)session.getAttribute("userEmail");
 
-        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
-        User user = foundUsers.get(0);
+        User user = userControl.getUserFromEmail(userEmail);
         List<Task> taskList = user.getTasks();
 
         req.setAttribute("tasks", taskList);
@@ -40,11 +39,10 @@ public class GetTasks extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        GenericDao userDao = new GenericDao(User.class);
+        UserController userControl = new UserController();
         String userEmail = (String) session.getAttribute("userEmail");
 
-        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
-        User user = foundUsers.get(0);
+        User user = userControl.getUserFromEmail(userEmail);
         List<Task> taskList = user.getTasks();
 
         req.setAttribute("tasks", taskList);

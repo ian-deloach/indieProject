@@ -140,6 +140,7 @@ public class Auth extends HttpServlet implements PropertiesLoader {
     private String validate(TokenResponse tokenResponse, HttpSession session) throws IOException {
 
         GenericDao<User> userDao = new GenericDao(User.class);
+        UserController userControl = new UserController();
 
         ObjectMapper mapper = new ObjectMapper();
         CognitoTokenHeader tokenHeader = mapper.readValue(CognitoJWTParser.getHeader(tokenResponse.getIdToken()).toString(), CognitoTokenHeader.class);
@@ -182,16 +183,21 @@ public class Auth extends HttpServlet implements PropertiesLoader {
 
         logger.debug("here are all the available claims: " + jwt.getClaims());
 
-        List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
-        if (foundUsers.isEmpty()) {
+        //List<User> foundUsers = userDao.getPropertyEqual("email", userEmail);
+        User user = userControl.getUserFromEmail(userEmail);
+        if (user == null) {
             User newUser = new User();
             newUser.setName(userName);
             newUser.setEmail(userEmail);
             userDao.insert(newUser);
+
+            newUser = userControl.getUserFromEmail(userEmail);
+            session.setAttribute("userId", newUser.getId());
+
+            return userName;
         }
 
-        List<User> newFoundUsers = userDao.getPropertyEqual("email", userEmail);
-        session.setAttribute("userId", newFoundUsers.get(0).getId());
+        session.setAttribute("userId", user.getId());
 
         return userName;
     }
