@@ -14,13 +14,13 @@ public class TaskTest extends TestCase {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    GenericDao dao;
+    GenericDao taskDao;
     GenericDao themeDao;
     GenericDao userDao;
 
     // Cleans the database before each test
     public void setUp() throws Exception {
-        dao = new GenericDao(Task.class);
+        taskDao = new GenericDao(Task.class);
         themeDao = new GenericDao(Theme.class);
         userDao = new GenericDao(User.class);
 
@@ -30,7 +30,7 @@ public class TaskTest extends TestCase {
 
     // Testing getting all tasks
     public void testGetAllTasks() {
-        List<Task> tasks = dao.getAll();
+        List<Task> tasks = taskDao.getAll();
         for(Task task : tasks) {
             logger.info(task.getName());
         }
@@ -43,13 +43,25 @@ public class TaskTest extends TestCase {
         User user = (User)userDao.getById(1);
 
         Task newTask = new Task("Test task", null, theme, user);
-        dao.insert(newTask);
+        taskDao.insert(newTask);
 
-        Task insertedTask = (Task)dao.getById(13);
+        Task insertedTask = (Task)taskDao.getById(13);
         assertEquals("Test task", insertedTask.getName());
         assertNull(insertedTask.getUrgency());
         assertEquals("Java", insertedTask.getTheme().getName());
         assertEquals("Ian", insertedTask.getUser().getName());
+    }
+
+    // Ensures correct tasks are deleted.
+    public void testDeleteTask() {
+        // Gets the eat breakfast task
+        Task taskToDelete = (Task)taskDao.getById(4);
+        taskDao.delete(taskToDelete);
+        assertNull(taskDao.getById(4));
+
+        List<Task> remainingTasks = taskDao.getAll();
+        assertEquals(9, remainingTasks.size());
+
     }
 
 //    public void testGenerateTaskList() {
@@ -60,11 +72,11 @@ public class TaskTest extends TestCase {
 //    }
 
     public void testUpdateTask() {
-        Task taskToUpdate = (Task)dao.getById(1);
+        Task taskToUpdate = (Task)taskDao.getById(1);
         taskToUpdate.setName("Present BiteSize");
-        dao.update(taskToUpdate);
+        taskDao.update(taskToUpdate);
 
-        Task retrievedTask = (Task)dao.getById(1);
+        Task retrievedTask = (Task)taskDao.getById(1);
         assertEquals("Present BiteSize", retrievedTask.getName());
     }
 }
