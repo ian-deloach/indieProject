@@ -2,6 +2,7 @@
 //
 //import biteSize.entity.Schedule;
 //import biteSize.entity.Task;
+//import biteSize.entity.Theme;
 //import biteSize.entity.User;
 //import junit.framework.TestCase;
 //import org.apache.logging.log4j.LogManager;
@@ -37,9 +38,9 @@
 //        User newUser = new User("Kobey", "kobey@gmail.com");
 //        dao.insert(newUser);
 //
-//        User insertedUser = (User)dao.getById(4);
+//        User insertedUser = (User)dao.getById(5);
 //        assertEquals("Kobey", insertedUser.getName());
-//        assertEquals(4, insertedUser.getId());
+//        assertEquals(5, insertedUser.getId());
 //    }
 //
 //    // Tests a successful user update
@@ -57,18 +58,20 @@
 //
 //        GenericDao<Task> taskDao = new GenericDao(Task.class);
 //        GenericDao<Schedule> scheduleDao = new GenericDao(Schedule.class);
+//        GenericDao<Theme> themeDao = new GenericDao(Theme.class);
 //
 //        User userToDelete = (User)dao.getById(1);
 //        dao.delete(userToDelete);
 //        assertNull(dao.getById(1));
 //
 //        List<Task> allTasks = taskDao.getAll();
-//
 //        List<Schedule> allSchedules = scheduleDao.getAll();
+//        List<Theme> allThemes = themeDao.getAll();
 //
 //        assertEquals(3, allTasks.size());
-//
 //        assertEquals(1, allSchedules.size());
+//        assertEquals(0, allThemes.size());
+//
 //    }
 //
 //    // Tests getting all users

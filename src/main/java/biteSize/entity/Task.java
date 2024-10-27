@@ -41,6 +41,23 @@ public class Task {
     @ManyToOne
     private User user;
 
+    /**
+     * Zero param constructor for the task class
+     */
+    public Task() {
+        name = "My task";
+        urgency = null;
+    }
+
+    /**
+     * Constructor for a task class
+     */
+    public Task(String name, String urgency, Theme theme, User user) {
+        this.name = name;
+        this.urgency = urgency;
+        this.theme = theme;
+        this.user = user;
+    }
 
 
     /**

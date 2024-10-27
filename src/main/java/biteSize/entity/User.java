@@ -29,6 +29,9 @@ public class User {
     private List<Task> tasks = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Theme> themes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Schedule> schedules = new ArrayList<>();
 
     /**
@@ -113,6 +116,22 @@ public class User {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * Getter for the user's themes
+     * @return the list of themes
+     */
+    public List<Theme> getThemes() {
+        return themes;
+    }
+
+    /**
+     * Setter for the user's themes
+     * @param themes the new list of themes
+     */
+    public void setThemes(List<Theme> themes) {
+        this.themes = themes;
     }
 
     /**
