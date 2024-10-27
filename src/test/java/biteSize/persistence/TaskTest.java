@@ -1,5 +1,6 @@
 package biteSize.persistence;
 
+import biteSize.controller.TaskController;
 import biteSize.entity.Schedule;
 import biteSize.entity.Task;
 import biteSize.entity.Theme;
@@ -75,8 +76,12 @@ public class TaskTest extends TestCase {
     }
 
     public void testGenerateTaskList() {
-        Schedule schedule = new Schedule();
-        List<Task> testList = schedule.generateSchedule(1);
+        TaskController taskController = new TaskController();
+        List<Task> testList = taskController.generateSchedule(1);
+
+        for(Task i : testList) {
+            System.out.println(i.getName());
+        }
 
         assertEquals(4, testList.size());
     }
