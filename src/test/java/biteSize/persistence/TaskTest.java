@@ -74,12 +74,12 @@ public class TaskTest extends TestCase {
 
     }
 
-//    public void testGenerateTaskList() {
-//        Schedule schedule = new Schedule();
-//        List<Task> testList = schedule.generateSchedule(1);
-//
-//        assertEquals(4, testList.size());
-//    }
+    public void testGenerateTaskList() {
+        Schedule schedule = new Schedule();
+        List<Task> testList = schedule.generateSchedule(1);
+
+        assertEquals(4, testList.size());
+    }
 
     public void testUpdateTask() {
         Task taskToUpdate = (Task)taskDao.getById(1);
