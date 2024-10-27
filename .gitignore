@@ -86,7 +86,7 @@ fabric.properties
 
 # Properties files
 cognito.properties
-src/main/resources/database.properties
+src/main/resources
 
 # Log File
 *.log
