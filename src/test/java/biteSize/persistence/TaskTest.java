@@ -64,6 +64,16 @@ public class TaskTest extends TestCase {
 
     }
 
+    // Checks to see if themes/tasks are deleted during user deletion
+    public void testTaskAndThemeOrphanRemoval() {
+        User userToDelete = (User)userDao.getById(1);
+        userDao.delete(userToDelete);
+
+        assertNull(taskDao.getById(1));
+        assertNull(themeDao.getById(1));
+
+    }
+
 //    public void testGenerateTaskList() {
 //        Schedule schedule = new Schedule();
 //        List<Task> testList = schedule.generateSchedule(1);
