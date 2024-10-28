@@ -89,6 +89,8 @@ public class TaskTest extends TestCase {
             logger.info("Full list: " + i.getName() + " Urgency: " + i.getUrgency());
         }
 
+        logger.info("----------------------------------");
+
         for(Task i : testParialList) {
             logger.info("Partial List: " + i.getName() + " Urgency: " + i.getUrgency());
         }

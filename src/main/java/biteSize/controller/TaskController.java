@@ -10,7 +10,15 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * A controller to handle methods that pertain to tasks.
+ * This includes schedules as those are just lists of tasks.
+ */
 public class TaskController {
+
+    public void insertSchedule() {
+
+    }
 
     /**
      * Generates a list of tasks for a new schedule. Each schedule has 4 regular
@@ -19,8 +27,6 @@ public class TaskController {
      * @return The list of tasks for the new schedule
      */
     public List<Task> generateSchedule(int id) {
-
-        final Logger logger = LogManager.getLogger(this.getClass());
 
         UserController userControl = new UserController();
         User user = userControl.getUserFromId(id);
@@ -41,10 +47,6 @@ public class TaskController {
 
         if (!urgentTasks.isEmpty()) {
             newSchedule.add(generateUrgentTask(urgentTasks));
-        }
-
-        for(Task task : newSchedule) {
-            logger.info("New Schedule Task: " + task.getName());
         }
 
         return newSchedule;

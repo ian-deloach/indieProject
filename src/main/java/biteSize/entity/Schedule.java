@@ -13,7 +13,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * The type Schedule.
+ * A class to represent the user's schedules
  */
 // This will be a many-to-many relationship with tasks. Make a separate table.
 @Entity
