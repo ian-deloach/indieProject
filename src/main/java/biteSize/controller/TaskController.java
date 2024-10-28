@@ -16,17 +16,13 @@ import java.util.Random;
  */
 public class TaskController {
 
-    public void insertSchedule() {
-
-    }
-
     /**
-     * Generates a list of tasks for a new schedule. Each schedule has 4 regular
+     * Generates a list of tasks for a new schedule. Each schedule has 3 regular
      * tasks and 1 urgent task.
      * @param id The id of the user
-     * @return The list of tasks for the new schedule
      */
-    public List<Task> generateSchedule(int id) {
+    // Currently generates List<Task>
+    public void generateSchedule(int id) {
 
         UserController userControl = new UserController();
         User user = userControl.getUserFromId(id);
@@ -49,7 +45,9 @@ public class TaskController {
             newSchedule.add(generateUrgentTask(urgentTasks));
         }
 
-        return newSchedule;
+        insertSchedule(user, newSchedule);
+
+//        return newSchedule;
     }
 
     /**
@@ -89,5 +87,9 @@ public class TaskController {
         Task urgentTask = urgentTasks.get(randomNumber);
 
         return urgentTask;
+    }
+
+    public void insertSchedule(User user, List<Task> tasks) {
+
     }
 }

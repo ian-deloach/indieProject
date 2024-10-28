@@ -55,6 +55,15 @@ public class Schedule {
     }
 
     /**
+     * Constructor with user, name, and list of tasks
+     */
+    public Schedule(String name, User user, List<Task> tasks) {
+        this.name = name;
+        this.user = user;
+        this.tasks = tasks;
+    }
+
+    /**
      * Getter for expiration date
      * @return expiration date
      */

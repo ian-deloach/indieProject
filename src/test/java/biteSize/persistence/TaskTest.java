@@ -80,24 +80,24 @@ public class TaskTest extends TestCase {
         Uses users that have more than 4 tasks to search through, as well
         as a user that only has 3 tasks.
     */
-    public void testGenerateTaskList() {
-        TaskController taskController = new TaskController();
-        List<Task> testFullList = taskController.generateSchedule(1);
-        List<Task> testParialList = taskController.generateSchedule(2);
-
-        for(Task i : testFullList) {
-            logger.info("Full list: " + i.getName() + " Urgency: " + i.getUrgency());
-        }
-
-        logger.info("----------------------------------");
-
-        for(Task i : testParialList) {
-            logger.info("Partial List: " + i.getName() + " Urgency: " + i.getUrgency());
-        }
-
-        assertEquals(4, testFullList.size());
-        assertEquals(3, testParialList.size());
-    }
+//    public void testGenerateTaskList() {
+//        TaskController taskController = new TaskController();
+//        List<Task> testFullList = taskController.generateSchedule(1);
+//        List<Task> testParialList = taskController.generateSchedule(2);
+//
+//        for(Task i : testFullList) {
+//            logger.info("Full list: " + i.getName() + " Urgency: " + i.getUrgency());
+//        }
+//
+//        logger.info("----------------------------------");
+//
+//        for(Task i : testParialList) {
+//            logger.info("Partial List: " + i.getName() + " Urgency: " + i.getUrgency());
+//        }
+//
+//        assertEquals(4, testFullList.size());
+//        assertEquals(3, testParialList.size());
+//    }
 
     public void testUpdateTask() {
         Task taskToUpdate = (Task)taskDao.getById(1);
