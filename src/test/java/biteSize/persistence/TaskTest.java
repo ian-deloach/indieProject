@@ -26,7 +26,7 @@ public class TaskTest extends TestCase {
         userDao = new GenericDao(User.class);
 
         Database database = Database.getInstance();
-        database.runSQL("cleanDB.sql");
+//        database.runSQL("cleanDB.sql");
     }
 
     // Testing getting all tasks
@@ -75,15 +75,26 @@ public class TaskTest extends TestCase {
 
     }
 
+    /*
+        Tests to see if schedule generation works as intended.
+        Uses users that have more than 4 tasks to search through, as well
+        as a user that only has 3 tasks.
+    */
     public void testGenerateTaskList() {
         TaskController taskController = new TaskController();
-        List<Task> testList = taskController.generateSchedule(1);
+        List<Task> testFullList = taskController.generateSchedule(1);
+        List<Task> testParialList = taskController.generateSchedule(2);
 
-        for(Task i : testList) {
-            System.out.println(i.getName());
+        for(Task i : testFullList) {
+            logger.info("Full list: " + i.getName() + " Urgency: " + i.getUrgency());
         }
 
-        assertEquals(4, testList.size());
+        for(Task i : testParialList) {
+            logger.info("Partial List: " + i.getName() + " Urgency: " + i.getUrgency());
+        }
+
+        assertEquals(4, testFullList.size());
+        assertEquals(3, testParialList.size());
     }
 
     public void testUpdateTask() {

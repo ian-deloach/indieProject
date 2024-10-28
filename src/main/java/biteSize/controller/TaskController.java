@@ -63,7 +63,6 @@ public class TaskController {
 
         while (randomTasks.size() < 3 && !tasks.isEmpty()) {
             randomNumber = rng.nextInt(tasks.size());
-            //logger.info("Here is the random number: " + randomNumber);
             randomTasks.add(tasks.get(randomNumber));
             tasks.remove(randomNumber);
         }
@@ -83,8 +82,6 @@ public class TaskController {
         Random rng = new Random();
         int randomNumber = rng.nextInt((urgentTasks.size()));
         Task urgentTask = urgentTasks.get(randomNumber);
-
-        //logger.info("The urgent task: " + urgentTask.getName());
 
         return urgentTask;
     }
