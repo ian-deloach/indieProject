@@ -38,7 +38,10 @@ public class TaskController {
         }
 
         List<Task> newSchedule = generateRandomTasks(regularTasks);
-        newSchedule.add(generateUrgentTask(urgentTasks));
+
+        if (!urgentTasks.isEmpty()) {
+            newSchedule.add(generateUrgentTask(urgentTasks));
+        }
 
         for(Task task : newSchedule) {
             logger.info("New Schedule Task: " + task.getName());

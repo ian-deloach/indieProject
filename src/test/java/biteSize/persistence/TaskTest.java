@@ -26,7 +26,7 @@ public class TaskTest extends TestCase {
         userDao = new GenericDao(User.class);
 
         Database database = Database.getInstance();
-//        database.runSQL("cleanDB.sql");
+        database.runSQL("cleanDB.sql");
     }
 
     // Testing getting all tasks
