@@ -1,7 +1,9 @@
 package biteSize.controller;
 
+import biteSize.entity.Schedule;
 import biteSize.entity.Task;
 import biteSize.entity.User;
+import biteSize.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +24,7 @@ public class TaskController {
      * @param id The id of the user
      */
     // Currently generates List<Task>
-    public void generateSchedule(int id) {
+    public void generateSchedule(String name, int id) {
 
         UserController userControl = new UserController();
         User user = userControl.getUserFromId(id);
@@ -39,13 +41,15 @@ public class TaskController {
             }
         }
 
-        List<Task> newSchedule = generateRandomTasks(regularTasks);
+        List<Task> scheduleTasks = generateRandomTasks(regularTasks);
 
         if (!urgentTasks.isEmpty()) {
-            newSchedule.add(generateUrgentTask(urgentTasks));
+            scheduleTasks.add(generateUrgentTask(urgentTasks));
         }
 
-        insertSchedule(user, newSchedule);
+        Schedule newSchedule = new Schedule(name, user, scheduleTasks);
+
+        insertSchedule(newSchedule);
 
 //        return newSchedule;
     }
@@ -89,7 +93,11 @@ public class TaskController {
         return urgentTask;
     }
 
-    public void insertSchedule(User user, List<Task> tasks) {
+    public void insertSchedule(Schedule scheduleToInsert) {
+
+        GenericDao<Schedule> scheduleDao = new GenericDao<>(Schedule.class);
+
+        scheduleDao.insert(scheduleToInsert);
 
     }
 }
