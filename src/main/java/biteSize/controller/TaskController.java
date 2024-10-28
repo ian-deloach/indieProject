@@ -21,6 +21,7 @@ public class TaskController {
     /**
      * Generates a list of tasks for a new schedule. Each schedule has 3 regular
      * tasks and 1 urgent task.
+     * @param name The name of the schedule
      * @param id The id of the user
      */
     // Currently generates List<Task>
@@ -93,6 +94,10 @@ public class TaskController {
         return urgentTask;
     }
 
+    /**
+     * Insert a schedule into the database
+     * @param scheduleToInsert The schedule to be inserted
+     */
     public void insertSchedule(Schedule scheduleToInsert) {
 
         GenericDao<Schedule> scheduleDao = new GenericDao<>(Schedule.class);
