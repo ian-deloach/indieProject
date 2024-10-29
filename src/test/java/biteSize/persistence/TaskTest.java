@@ -17,7 +17,7 @@ public class TaskTest extends TestCase {
     GenericDao themeDao;
     GenericDao userDao;
 
-    // Cleans the database before each test
+    // Cleans the database before each test and generates DAOs
     public void setUp() throws Exception {
         taskDao = new GenericDao(Task.class);
         themeDao = new GenericDao(Theme.class);

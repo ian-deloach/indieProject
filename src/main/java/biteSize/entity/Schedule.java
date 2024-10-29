@@ -32,7 +32,6 @@ public class Schedule {
     private Date dateCreated;
 
     @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
-    @Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
     @JoinTable(
             name = "schedule_task",
             joinColumns = {@JoinColumn(name="schedule_id")},
