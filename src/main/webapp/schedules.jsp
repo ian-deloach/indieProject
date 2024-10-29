@@ -9,21 +9,17 @@
 <c:import url="components/navbar.jsp"/>
     <h2>Schedules</h2>
 
-    <table>
-        <thead>
-        <th>Name</th>
-        <th>Due:</th>
-        <th>Created:</th>
-        </thead>
-        <tbody>
-        <c:forEach var="schedule" items="${schedules}">
-            <tr>
-                <td>${schedule.name}</td>
-                <td>${schedule.expirationDate}</td>
-                <td>${schedule.dateCreated}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
+    <jsp:useBean id="userSchedules" scope="request" type="java.util.List"/>
+    <c:forEach items="${userSchedules}" var="schedule">
+        <table>
+            <th>${schedule.name}</th>
+            <c:forEach var="task" items="${schedule.tasks}">
+                <tr>
+                    <td>${task.name}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:forEach>
     </table>
     <br><hr>
 

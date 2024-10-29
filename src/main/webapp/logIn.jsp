@@ -8,10 +8,13 @@
   <c:import url="components/navbar.jsp"/>
   <form action="logIn" method="POST">
     <label for="email">Email:</label>
+    <br>
     <input type="text" id="email" name="email">
     <br>
     <label for="password">Password:</label>
+    <br>
     <input type="password" id="password" name="password">
+    <br>
     <input type="submit" value="Log In">
 
     <c:import url="components/footer.jsp"/>

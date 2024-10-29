@@ -29,7 +29,7 @@ public class GetSchedules extends HttpServlet {
         User user = userControl.getUserFromEmail(userEmail);
         List<Schedule> scheduleList = user.getSchedules();
 
-        req.setAttribute("schedules", scheduleList);
+        req.setAttribute("userSchedules", scheduleList);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/schedules.jsp");
         dispatcher.forward(req, resp);
