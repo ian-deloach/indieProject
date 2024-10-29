@@ -14,5 +14,10 @@ public class ScheduleTest extends TestCase {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    public void testInsertNewSchedule() {
+
+
+
+    }
 
 }
