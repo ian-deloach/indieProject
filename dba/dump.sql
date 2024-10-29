@@ -100,7 +100,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES ('BiteSize','2024-05-01','Urgent','That\'s this project',1,1,1),('Final Exam',NULL,NULL,'Final Exam for PHP',1,2,2),('REST Project','2024-05-07','Done','Build off of project 3',1,3,3),('Eat Breakfast',NULL,NULL,'To start off the day',1,4,4),('Eat Lunch',NULL,NULL,'It can wait',1,5,4),('Eat Dinner',NULL,'Urgent','Can\'t skip this one though',1,6,4),('Go To Bed',NULL,'Urgent','Hooray!',1,7,4),('Apply For Jobs',NULL,NULL,'After graduation plans',2,8,NULL),('Hang out with Ian',NULL,'Urgent','Thanks, Arianna.',2,9,NULL),('Accounting',NULL,NULL,'Arianna\'s job',2,12,NULL);
+INSERT INTO `task` VALUES ('BiteSize','2024-05-01','Urgent','That\'s this project',1,1,1),('Final Exam',NULL,NULL,'Final Exam for PHP',1,2,2),('REST Project','2024-05-07',NULL,'Build off of project 3',1,3,3),('Eat Breakfast',NULL,NULL,'To start off the day',1,4,4),('Eat Lunch',NULL,NULL,'It can wait',1,5,4),('Eat Dinner',NULL,'Urgent','Can\'t skip this one though',1,6,4),('Go To Bed',NULL,'Urgent','Hooray!',1,7,4),('Apply For Jobs',NULL,NULL,'After graduation plans',2,8,NULL),('Hang out with Ian',NULL,'Urgent','Thanks, Arianna.',2,9,NULL),('Accounting',NULL,NULL,'Arianna\'s job',2,12,NULL);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 

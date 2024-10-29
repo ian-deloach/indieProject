@@ -16,6 +16,9 @@
             <c:forEach var="task" items="${schedule.tasks}">
                 <tr>
                     <td>${task.name}</td>
+                    <td>${task.urgency}</td>
+                    <td>${task.theme.name}</td>
+                    <td>${task.description}</td>
                 </tr>
             </c:forEach>
         </table>
