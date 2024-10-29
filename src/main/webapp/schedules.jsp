@@ -26,9 +26,6 @@
         </tbody>
     </table>
     <br><hr>
-    <p>These were supposed to be tables, but 1. I am out of time, and 2. They looked clunky.</p>
-    <p>I thought about opting into doing click-ins like I did for tasks, but that seems counter-intuitive.</p>
-    <p>Ultimately, I decided to get the CRUD working and finish after class is over.</p>
 
     <c:import url="components/footer.jsp"/>
     <c:import url="components/bootstrapBody.jsp"/>
