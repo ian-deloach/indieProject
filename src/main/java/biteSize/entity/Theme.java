@@ -28,6 +28,9 @@ public class Theme {
     @OneToMany(mappedBy = "theme", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Task> tasks = new ArrayList<>();
 
+    @Column(name = "is_primary")
+    private boolean isPrimary;
+
     /**
      * Getter for id
      * @return the id
@@ -74,6 +77,21 @@ public class Theme {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Getter for isPrimary
+     * @return if the theme is a primary theme or not
+     */
+    public boolean getIsPrimary() {
+        return isPrimary;
+    }
+
+    /**
+     * Setter for isPrimary
+     */
+    public void setIsPrimary(boolean isPrimary) {
+        this.isPrimary = isPrimary;
     }
 
     /**

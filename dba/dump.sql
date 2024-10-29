@@ -115,6 +115,7 @@ CREATE TABLE `theme` (
   `name` varchar(50) DEFAULT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
+  `is_primary` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `theme_user_id_fk` (`user_id`),
   CONSTRAINT `theme_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
@@ -127,7 +128,7 @@ CREATE TABLE `theme` (
 
 LOCK TABLES `theme` WRITE;
 /*!40000 ALTER TABLE `theme` DISABLE KEYS */;
-INSERT INTO `theme` VALUES ('Java',1,1),('PHP',2,1),('JavaScript',3,1),('Health',4,1),('Job',5,2);
+INSERT INTO `theme` VALUES ('Java',1,1,0),('PHP',2,1,0),('JavaScript',3,1,0),('Health',4,1,1),('Job',5,2,1);
 /*!40000 ALTER TABLE `theme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-29 15:47:59
+-- Dump completed on 2024-10-29 18:32:42
