@@ -6,24 +6,29 @@
     <title>Schedule</title>
 </head>
 <body>
-<c:import url="components/navbar.jsp"/>
+    <c:import url="components/navbar.jsp"/>
     <h2>Schedules</h2>
+    <br>
+    <form action="add-schedule" method="POST">
+        <label for="scheduleName">New Schedule:</label>
+        <input type="text" id="scheduleName" name="scheduleName">
+        <input type="submit" value="Generate new schedule">
+    </form>
 
-    <table>
-        <thead>
-        <th>Name</th>
-        <th>Due:</th>
-        <th>Created:</th>
-        </thead>
-        <tbody>
-        <c:forEach var="schedule" items="${schedules}">
-            <tr>
-                <td>${schedule.name}</td>
-                <td>${schedule.expirationDate}</td>
-                <td>${schedule.dateCreated}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
+    <jsp:useBean id="userSchedules" scope="request" type="java.util.List"/>
+    <c:forEach items="${userSchedules}" var="schedule">
+        <table style="border: 1px solid black">
+            <th>${schedule.name}</th>
+            <c:forEach var="task" items="${schedule.tasks}">
+                <tr>
+                    <td>${task.name}</td>
+                    <td>${task.urgency}</td>
+                    <td>${task.theme.name}</td>
+                    <td>${task.description}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </c:forEach>
     </table>
     <br><hr>
 
