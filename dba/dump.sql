@@ -133,6 +133,34 @@ INSERT INTO `theme` VALUES ('Java',1,1,0),('PHP',2,1,0),('JavaScript',3,1,0),('H
 UNLOCK TABLES;
 
 --
+-- Table structure for table `theme_task`
+--
+
+DROP TABLE IF EXISTS `theme_task`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `theme_task` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `task_id` int DEFAULT NULL,
+  `theme_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `theme_task_task_id_fk` (`task_id`),
+  KEY `theme_task_theme_id_fk` (`theme_id`),
+  CONSTRAINT `theme_task_task_id_fk` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`),
+  CONSTRAINT `theme_task_theme_id_fk` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `theme_task`
+--
+
+LOCK TABLES `theme_task` WRITE;
+/*!40000 ALTER TABLE `theme_task` DISABLE KEYS */;
+/*!40000 ALTER TABLE `theme_task` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -166,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-29 18:32:42
+-- Dump completed on 2024-10-29 18:59:14
