@@ -1,3 +1,20 @@
+h1, h2, h3 {
+    margin: 1em;
+}
+
+form {
+    margin: 1em;
+}
+
+table {
+    margin: 1em;
+    width: 50%;
+}
+
+table, th, td {
+    border: 1px solid;
+}
+
 #footer {
     position: fixed;
     left: 0;

@@ -11,7 +11,7 @@
 
     <form action="edit-task" method="POST">
         <label for="taskName">Task Name:</label>
-        <input type="text" id="taskName" name="taskName" value="${task.name}">
+        <input type="text" id="taskName" name="taskName" value="${task.name}" size="30">
         <br>
         <!--TODO remember to enable deadlines at some point
         <label for="deadline">Deadline (Optional):</label>
@@ -23,7 +23,7 @@
         <label for="description">Description:</label>
         <br>
         <textarea id="description" name="description" rows="5" cols="30">${task.description}</textarea>
-        <br>
+        <br><br>
         <input type="submit" value="Edit Task"> <a id="deleteLink" href="delete-task?id=${task.id}">Delete Task</a>
 
         <input type="hidden" id="taskId" name="taskId" value="${task.id}">

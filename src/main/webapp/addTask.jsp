@@ -22,7 +22,7 @@
 
     <form action="add-task" method="POST">
         <label for="taskName">Task Name:</label>
-        <input type="text" id="taskName" name="taskName">
+        <input type="text" id="taskName" name="taskName" size="30">
         <br>
         <!--TODO remember to enable deadlines at some point
         <label for="deadline">Deadline (Optional):</label>
@@ -34,7 +34,7 @@
         <label for="description">Description:</label>
         <br>
         <textarea id="description" name="description" rows="5" cols="30"></textarea>
-        <br>
+        <br><br>
         <input type="submit" value="Add Task">
     </form>
 

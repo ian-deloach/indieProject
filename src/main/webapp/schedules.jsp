@@ -18,7 +18,9 @@
     <jsp:useBean id="userSchedules" scope="request" type="java.util.List"/>
     <c:forEach items="${userSchedules}" var="schedule">
         <table style="border: 1px solid black">
-            <th>${schedule.name}</th>
+            <tr>
+                <th colspan="4" style="text-align: center">${schedule.name}</th>
+            </tr>
             <c:forEach var="task" items="${schedule.tasks}">
                 <tr>
                     <td>${task.name}</td>

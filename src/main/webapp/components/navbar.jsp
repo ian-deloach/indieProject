@@ -10,10 +10,10 @@
                     <a class="nav-link active" aria-current="page" href="tasks">My Tasks</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="schedules">Schedules</a>
+                    <a class="nav-link" href="add-task">Add Task</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="add-task">Add Task</a>
+                    <a class="nav-link" href="schedules">Schedules</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="log-out">Log Out</a>

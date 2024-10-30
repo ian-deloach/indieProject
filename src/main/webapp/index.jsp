@@ -4,17 +4,16 @@
 <html>
     <head>
         <c:import url="components/bootstrapHeader.jsp"/>
-        <title>Bite Size</title>
     </head>
     <body>
         <c:choose>
             <c:when test="${empty userName}">
                 <c:import url="components/guestNavbar.jsp"/>
-                <h1>Welcome to BiteSize!</h1>
+                <h1 style="margin: 1em;">Welcome to BiteSize!</h1>
             </c:when>
             <c:otherwise>
                 <c:import url="components/navbar.jsp"/>
-                <h3>Welcome, ${userName}!</h3>
+                <h3 style="margin: 1em;">Welcome, ${userName}!</h3>
             </c:otherwise>
         </c:choose>
 
