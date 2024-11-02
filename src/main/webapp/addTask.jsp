@@ -23,6 +23,8 @@
     <form action="add-task" method="POST">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName" size="30">
+        <label for="theme">Theme:</label>
+        <input type="text" id="theme" name="theme" size="30">
         <br>
         <!--TODO remember to enable deadlines at some point
         <label for="deadline">Deadline (Optional):</label>
