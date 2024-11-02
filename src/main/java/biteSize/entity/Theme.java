@@ -1,6 +1,7 @@
 package biteSize.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.*;
@@ -30,6 +31,21 @@ public class Theme {
 
     @Column(name = "is_primary")
     private boolean isPrimary;
+
+    /**
+     * Zero param constructor for Themes
+     */
+    public Theme() {
+
+    }
+
+    /**
+     * Constructor for Themes with users and names
+     */
+    public Theme(User user, String name) {
+        this.user = user;
+        this.name = name;
+    }
 
     /**
      * Getter for id

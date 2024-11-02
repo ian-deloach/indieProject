@@ -12,11 +12,15 @@
     <form action="edit-task" method="POST">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName" value="${task.name}" size="30">
+
+        <label for="theme">Theme:</label>
+        <input list="userThemes" id="theme" name="theme" value="${task.theme.name}"size="30">
+        <datalist id="userThemes">
+            <c:forEach items="${userThemes}" var="theme">
+            <option value="${theme.name}">
+                </c:forEach>
+        </datalist>
         <br>
-        <!--TODO remember to enable deadlines at some point
-        <label for="deadline">Deadline (Optional):</label>
-        <input type="date" id="deadline" name="deadline">
-        <br>-->
         <label for="urgent">Urgent</label>
         <input type="checkbox" id="urgent" name="urgent">
         <br>
