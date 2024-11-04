@@ -37,6 +37,15 @@ public class AddTask extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        UserController userControl = new UserController();
+        HttpSession session = req.getSession();
+        String userEmail = (String)session.getAttribute("userEmail");
+        User user = userControl.getUserFromEmail(userEmail);
+        List<Theme> themes = user.getThemes();
+
+        req.setAttribute("userThemes", themes);
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/addTask.jsp");
         dispatcher.forward(req, resp);
     }

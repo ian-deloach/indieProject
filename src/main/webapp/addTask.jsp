@@ -23,13 +23,17 @@
     <form action="add-task" method="POST">
         <label for="taskName">Task Name:</label>
         <input type="text" id="taskName" name="taskName" size="30">
+
         <label for="theme">Theme:</label>
-        <input type="text" id="theme" name="theme" size="30">
+        <input list="userThemes" id="theme" name="theme" size="30">
+        <datalist id="userThemes">
+            <c:forEach items="${userThemes}" var="theme">
+                <option value="${theme.name}">
+            </c:forEach>
+        </datalist>
         <br>
-        <!--TODO remember to enable deadlines at some point
-        <label for="deadline">Deadline (Optional):</label>
-        <input type="date" id="deadline" name="deadline">
-        <br>-->
+
+        <!--TODO remember to enable deadlines at some point -->
         <label for="urgent">Urgent</label>
         <input type="checkbox" id="urgent" name="urgent">
         <br>
