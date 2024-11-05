@@ -72,19 +72,6 @@ public class AddTask extends HttpServlet {
         session.removeAttribute("addMessage");
         int userId = Integer.parseInt(session.getAttribute("userId").toString());
 
-        // TODO All of the 'validations' are band-aid fixes. They can be improved.
-
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//        Date deadline = null;
-//
-//        if (!Objects.equals(deadlineString, "")) {
-//            try {
-//                deadline = format.parse(deadlineString);
-//            } catch (ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-
         if (Objects.equals(urgency, "on")) {
             urgency = "Urgent";
         }

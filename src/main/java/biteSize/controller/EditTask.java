@@ -67,7 +67,6 @@ public class EditTask extends HttpServlet {
         session.removeAttribute("addMessage");
         int userId = Integer.parseInt(session.getAttribute("userId").toString());
 
-        // TODO Incorporate deadline at some point, like add task
         if (Objects.equals(urgency, "on")) {
             urgency = "Urgent";
         }

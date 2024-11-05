@@ -22,8 +22,6 @@
                 <tr>
                     <td><a href="/BiteSize_war/edit-task?id=${task.id}">${task.name}</a></td>
                     <td>${task.urgency}</td>
-                    <!--TODO Deadline looks gross right now. Find a way to format it first.-->
-                    <%--<td>${task.deadline}</td>--%>
                     <td>${task.description}</td>
                 </tr>
             </c:forEach>
