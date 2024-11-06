@@ -87,11 +87,13 @@ public class AddTask extends HttpServlet {
             name = "New Task";
         }
 
+        // If a theme exists with the same name as the entered name, use that instead
         if (themeNames.contains(enteredThemeName)) {
             GenericDao<Theme> themeDao = new GenericDao<>(Theme.class);
             themeToBeEntered = (Theme)themeDao.getPropertyEqual("name", enteredThemeName).get(0);
         }
 
+        // Otherwise, create a new theme object and insert that.
         if (!themeNames.contains(enteredThemeName)) {
             GenericDao<Theme> themeDao = new GenericDao<>(Theme.class);
             themeToBeEntered = new Theme(user, enteredThemeName);

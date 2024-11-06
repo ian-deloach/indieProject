@@ -1,6 +1,7 @@
 package biteSize.controller;
 
 import biteSize.entity.Task;
+import biteSize.entity.Theme;
 import biteSize.entity.User;
 import biteSize.persistence.GenericDao;
 
@@ -8,8 +9,10 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Servlet to send task information to an edit form
@@ -56,16 +59,26 @@ public class EditTask extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // TODO This is VERY similar to add task. Create a method to validate or add hibernate validation
         int id = Integer.parseInt(req.getParameter("taskId"));
+        HttpSession session = req.getSession();
+
+        int userId = Integer.parseInt(session.getAttribute("userId").toString());
+        UserController control = new UserController();
+        User user = control.getUserFromId(userId);
+        List<Theme> userThemes = user.getThemes();
+
+        Theme themeToBeEntered = new Theme();
+        Set<String> themeNames = new HashSet<>();
+        for(Theme t : userThemes) {
+            themeNames.add(t.getName());
+        }
+
         String name = req.getParameter("taskName");
-        String deadlineString = req.getParameter("deadline");
         String urgency = req.getParameter("urgent");
         String description = req.getParameter("description");
+        String enteredThemeName = req.getParameter("theme");
         String dispatcherUrl = "/tasks";
-        HttpSession session = req.getSession();
         session.removeAttribute("addMessage");
-        int userId = Integer.parseInt(session.getAttribute("userId").toString());
 
         if (Objects.equals(urgency, "on")) {
             urgency = "Urgent";
@@ -83,9 +96,23 @@ public class EditTask extends HttpServlet {
             urgency = "Urgent";
         }
 
+        // If a theme exists with the same name as the entered name, use that instead
+        if (themeNames.contains(enteredThemeName)) {
+            GenericDao<Theme> themeDao = new GenericDao<>(Theme.class);
+            themeToBeEntered = (Theme)themeDao.getPropertyEqual("name", enteredThemeName).get(0);
+        }
+
+        // Otherwise, create a new theme object and insert that.
+        if (!themeNames.contains(enteredThemeName)) {
+            GenericDao<Theme> themeDao = new GenericDao<>(Theme.class);
+            themeToBeEntered = new Theme(user, enteredThemeName);
+            themeDao.insert(themeToBeEntered);
+        }
+
         Task taskToUpdate = (Task)taskDao.getById(id);
         taskToUpdate.setName(name);
         taskToUpdate.setUrgency(urgency);
+        taskToUpdate.setTheme(themeToBeEntered);
         taskToUpdate.setDescription(description);
         taskDao.update(taskToUpdate);
 
