@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `schedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schedule` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `date_created` date DEFAULT (curdate()),
-  `expiration_date` date DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `schedule_user_id_fk` (`user_id`),
-  CONSTRAINT `schedule_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                            `id` int NOT NULL AUTO_INCREMENT,
+                            `date_created` date DEFAULT (curdate()),
+                            `expiration_date` date DEFAULT NULL,
+                            `name` varchar(50) DEFAULT NULL,
+                            `user_id` int DEFAULT NULL,
+                            PRIMARY KEY (`id`),
+                            KEY `schedule_user_id_fk` (`user_id`),
+                            CONSTRAINT `schedule_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,12 +52,12 @@ DROP TABLE IF EXISTS `schedule_task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schedule_task` (
-  `schedule_id` int DEFAULT NULL,
-  `task_id` int DEFAULT NULL,
-  KEY `schedule_id_fk` (`schedule_id`),
-  KEY `task_id__fk` (`task_id`),
-  CONSTRAINT `schedule_id_fk` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`id`),
-  CONSTRAINT `task_id__fk` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`)
+                                 `schedule_id` int DEFAULT NULL,
+                                 `task_id` int DEFAULT NULL,
+                                 KEY `schedule_id_fk` (`schedule_id`),
+                                 KEY `task_id__fk` (`task_id`),
+                                 CONSTRAINT `schedule_id_fk` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`id`),
+                                 CONSTRAINT `task_id__fk` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -79,18 +79,18 @@ DROP TABLE IF EXISTS `task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `task` (
-  `name` varchar(50) NOT NULL,
-  `deadline` date DEFAULT NULL,
-  `urgency` varchar(20) DEFAULT NULL,
-  `description` varchar(500) DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  `id` int NOT NULL AUTO_INCREMENT,
-  `theme_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `task_user_id_fk` (`user_id`),
-  KEY `task_theme_id_fk` (`theme_id`),
-  CONSTRAINT `task_theme_id_fk` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`id`),
-  CONSTRAINT `task_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                        `name` varchar(50) NOT NULL,
+                        `deadline` date DEFAULT NULL,
+                        `urgency` varchar(20) DEFAULT NULL,
+                        `description` varchar(500) DEFAULT NULL,
+                        `user_id` int DEFAULT NULL,
+                        `id` int NOT NULL AUTO_INCREMENT,
+                        `theme_id` int DEFAULT NULL,
+                        PRIMARY KEY (`id`),
+                        KEY `task_user_id_fk` (`user_id`),
+                        KEY `task_theme_id_fk` (`theme_id`),
+                        CONSTRAINT `task_theme_id_fk` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`id`),
+                        CONSTRAINT `task_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -112,13 +112,13 @@ DROP TABLE IF EXISTS `theme`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `theme` (
-  `name` varchar(50) DEFAULT NULL,
-  `id` int NOT NULL AUTO_INCREMENT,
-  `user_id` int DEFAULT NULL,
-  `is_primary` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `theme_user_id_fk` (`user_id`),
-  CONSTRAINT `theme_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                         `name` varchar(50) DEFAULT NULL,
+                         `id` int NOT NULL AUTO_INCREMENT,
+                         `user_id` int DEFAULT NULL,
+                         `is_primary` tinyint(1) NOT NULL DEFAULT '0',
+                         PRIMARY KEY (`id`),
+                         KEY `theme_user_id_fk` (`user_id`),
+                         CONSTRAINT `theme_user_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -140,14 +140,14 @@ DROP TABLE IF EXISTS `theme_task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `theme_task` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `task_id` int DEFAULT NULL,
-  `theme_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `theme_task_task_id_fk` (`task_id`),
-  KEY `theme_task_theme_id_fk` (`theme_id`),
-  CONSTRAINT `theme_task_task_id_fk` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`),
-  CONSTRAINT `theme_task_theme_id_fk` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`id`)
+                              `id` int NOT NULL AUTO_INCREMENT,
+                              `task_id` int DEFAULT NULL,
+                              `theme_id` int DEFAULT NULL,
+                              PRIMARY KEY (`id`),
+                              KEY `theme_task_task_id_fk` (`task_id`),
+                              KEY `theme_task_theme_id_fk` (`theme_id`),
+                              CONSTRAINT `theme_task_task_id_fk` FOREIGN KEY (`task_id`) REFERENCES `task` (`id`),
+                              CONSTRAINT `theme_task_theme_id_fk` FOREIGN KEY (`theme_id`) REFERENCES `theme` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -168,10 +168,10 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `name` varchar(25) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `id` int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
+                        `name` varchar(25) NOT NULL,
+                        `email` varchar(50) NOT NULL,
+                        `id` int NOT NULL AUTO_INCREMENT,
+                        PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -18,23 +18,27 @@
     </c:otherwise>
     </c:choose>
 
-    <!--TODO Create dynamic theme dropdown list -->
-
     <form action="add-task" method="POST">
         <label for="taskName">Task Name:</label>
-        <input type="text" id="taskName" name="taskName">
+        <input type="text" id="taskName" name="taskName" size="30">
+
+        <label for="theme">Theme:</label>
+        <input list="userThemes" id="theme" name="theme" size="30">
+        <datalist id="userThemes">
+            <c:forEach items="${userThemes}" var="theme">
+                <option value="${theme.name}">
+            </c:forEach>
+        </datalist>
         <br>
-        <!--TODO remember to enable deadlines at some point
-        <label for="deadline">Deadline (Optional):</label>
-        <input type="date" id="deadline" name="deadline">
-        <br>-->
+
+        <!--TODO remember to enable deadlines at some point -->
         <label for="urgent">Urgent</label>
         <input type="checkbox" id="urgent" name="urgent">
         <br>
         <label for="description">Description:</label>
         <br>
         <textarea id="description" name="description" rows="5" cols="30"></textarea>
-        <br>
+        <br><br>
         <input type="submit" value="Add Task">
     </form>
 

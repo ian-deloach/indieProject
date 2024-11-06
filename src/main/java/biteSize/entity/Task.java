@@ -1,6 +1,7 @@
 package biteSize.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.*;

@@ -12,10 +12,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+import java.util.*;
 
 @WebServlet(
         name = "addTask",
@@ -37,6 +34,15 @@ public class AddTask extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        UserController userControl = new UserController();
+        HttpSession session = req.getSession();
+        String userEmail = (String)session.getAttribute("userEmail");
+        User user = userControl.getUserFromEmail(userEmail);
+        List<Theme> themes = user.getThemes();
+
+        req.setAttribute("userThemes", themes);
+
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/addTask.jsp");
         dispatcher.forward(req, resp);
     }
@@ -52,46 +58,55 @@ public class AddTask extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        HttpSession session = req.getSession();
+        int userId = Integer.parseInt(session.getAttribute("userId").toString());
         UserController control = new UserController();
+        User user = control.getUserFromId(userId);
+        List<Theme> userThemes = user.getThemes();
+
+        Theme themeToBeEntered = new Theme();
+        Set<String> themeNames = new HashSet<>();
+        for(Theme t : userThemes) {
+            themeNames.add(t.getName());
+        }
 
         String name = req.getParameter("taskName");
-//        String deadlineString = req.getParameter("deadline");
+        String enteredThemeName = req.getParameter("theme");
         String urgency = req.getParameter("urgent");
         String description = req.getParameter("description");
         String dispatcherUrl = "/tasks";
-        HttpSession session = req.getSession();
         session.removeAttribute("addMessage");
-        int userId = Integer.parseInt(session.getAttribute("userId").toString());
 
-        // TODO All of the 'validations' are band-aid fixes. They can be improved.
-
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//        Date deadline = null;
-//
-//        if (!Objects.equals(deadlineString, "")) {
-//            try {
-//                deadline = format.parse(deadlineString);
-//            } catch (ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-
+        // If the urgency checkbox was clicked, this sets the task as urgent
         if (Objects.equals(urgency, "on")) {
             urgency = "Urgent";
         }
 
+        // If a task is left blank, it will be called "New Task"
         if (Objects.equals(name, "")) {
             name = "New Task";
         }
 
-        User user = control.getUserFromId(userId);
+        // If a theme exists with the same name as the entered name, use that instead
+        if (themeNames.contains(enteredThemeName)) {
+            GenericDao<Theme> themeDao = new GenericDao<>(Theme.class);
+            themeToBeEntered = (Theme)themeDao.getPropertyEqual("name", enteredThemeName).get(0);
+        }
+
+        // Otherwise, create a new theme object and insert that.
+        if (!themeNames.contains(enteredThemeName)) {
+            GenericDao<Theme> themeDao = new GenericDao<>(Theme.class);
+            themeToBeEntered = new Theme(user, enteredThemeName);
+            themeDao.insert(themeToBeEntered);
+        }
+
 
         Task newTask = new Task();
+        newTask.setUser(user);
         newTask.setName(name);
-        //newTask.setDeadline(deadline);
         newTask.setUrgency(urgency);
         newTask.setDescription(description);
-        newTask.setUser(user);
+        newTask.setTheme(themeToBeEntered);
 
         GenericDao taskDao = new GenericDao(Task.class);
         taskDao.insert(newTask);

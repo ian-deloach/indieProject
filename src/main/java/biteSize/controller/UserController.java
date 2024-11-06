@@ -2,6 +2,7 @@ package biteSize.controller;
 
 
 import biteSize.entity.Task;
+import biteSize.entity.Theme;
 import biteSize.entity.User;
 import biteSize.persistence.GenericDao;
 
@@ -14,9 +15,10 @@ import java.util.List;
  */
 public class UserController {
 
+    GenericDao userDao = new GenericDao(User.class);
+
     public User getUserFromEmail(String email) {
 
-        GenericDao userDao = new GenericDao(User.class);
         List<User> foundUsers = userDao.getPropertyEqual("email", email);
 
         if (foundUsers.isEmpty()) {
@@ -29,7 +31,6 @@ public class UserController {
 
     public User getUserFromId(int id) {
 
-        GenericDao userDao = new GenericDao(User.class);
         User foundUser = (User)userDao.getById(id);
 
         return foundUser;

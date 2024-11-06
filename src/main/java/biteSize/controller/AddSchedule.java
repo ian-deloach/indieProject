@@ -52,7 +52,6 @@ public class AddSchedule extends HttpServlet {
         String scheduleName = req.getParameter("scheduleName");
         taskControl.generateSchedule(scheduleName, userId);
 
-        // TODO figure out why this wont redirect properly
         RequestDispatcher dispatcher = req.getRequestDispatcher("/schedules");
         dispatcher.forward(req, resp);
 
