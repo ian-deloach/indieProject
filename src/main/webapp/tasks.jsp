@@ -14,8 +14,8 @@
         <thead>
             <th>Name</th>
             <th>Urgency</th>
-            <!--<th>Deadline</th>-->
             <th>Description</th>
+            <th>Theme</th>
         </thead>
         <tbody>
             <c:forEach var="task" items="${tasks}">
@@ -23,6 +23,7 @@
                     <td><a href="/BiteSize_war/edit-task?id=${task.id}">${task.name}</a></td>
                     <td>${task.urgency}</td>
                     <td>${task.description}</td>
+                    <td>${task.theme.name}</td>
                 </tr>
             </c:forEach>
         </tbody>
