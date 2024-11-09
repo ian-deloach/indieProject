@@ -50,7 +50,7 @@ public class AddSchedule extends HttpServlet {
         TaskController taskControl = new TaskController();
 
         String scheduleName = req.getParameter("scheduleName");
-        taskControl.generateSchedule(scheduleName, userId);
+        taskControl.generateRandomSchedule(scheduleName, userId);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/schedules");
         dispatcher.forward(req, resp);

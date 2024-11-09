@@ -19,13 +19,23 @@ import java.util.Random;
 public class TaskController {
 
     /**
+     * Takes the user's selected tasks to create their own schedule
+     * @param name
+     * @param id
+     * @param selectedTasks
+     */
+    public void generateSchedule(String name, int id, List<Task> selectedTasks) {
+
+    }
+
+    /**
      * Generates a list of tasks for a new schedule. Each schedule has 3 regular
      * tasks and 1 urgent task.
      * @param name The name of the schedule
      * @param id The id of the user
      */
     // Currently generates List<Task>
-    public void generateSchedule(String name, int id) {
+    public void generateRandomSchedule(String name, int id) {
 
         UserController userControl = new UserController();
         User user = userControl.getUserFromId(id);
@@ -52,7 +62,6 @@ public class TaskController {
 
         insertSchedule(newSchedule);
 
-//        return newSchedule;
     }
 
     /**
