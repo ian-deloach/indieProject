@@ -13,6 +13,9 @@
                     <a class="nav-link" href="add-task">Add Task</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="create-schedule">Create Schedule</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="schedules">Schedules</a>
                 </li>
                 <li class="nav-item">

@@ -19,9 +19,6 @@ import java.util.*;
         urlPatterns = {"/add-task"}
 )
 
-/**
- * Servlet to create new tasks
- */
 public class AddTask extends HttpServlet {
 
     /**
