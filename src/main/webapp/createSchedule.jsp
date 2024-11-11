@@ -5,13 +5,26 @@
     <c:import url="components/bootstrapHeader.jsp"/>
     <title>Create Schedule</title>
     <script src="<%= request.getContextPath() %>/js/test.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#searchTerm").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#foundTasks *").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <c:import url="components/navbar.jsp"/>
 
     <h2>Schedule Builder</h2>
 
-    <table>
+    <input id="searchTerm" type="text" placeholder="Search...">
+
+    <table id="foundTasks">
         <thead>
         <th>Name</th>
         <th>Urgency</th>
