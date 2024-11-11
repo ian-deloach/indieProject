@@ -4,3 +4,5 @@ const init = () => {
 
     document.body.appendChild(header);
 }
+
+window.onload = init;
