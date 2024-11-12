@@ -10,7 +10,7 @@
         $(document).ready(function(){
             $("#searchTerm").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $("#foundTasks *").filter(function() {
+                $("#taskTable > tbody > tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -24,7 +24,7 @@
 
     <input id="searchTerm" type="text" placeholder="Search...">
 
-    <table id="foundTasks">
+    <table id="taskTable">
         <thead>
         <th>Name</th>
         <th>Urgency</th>
@@ -33,8 +33,8 @@
         </thead>
         <tbody>
         <c:forEach var="task" items="${tasks}">
-            <tr>
-                <td><a href="/BiteSize_war/edit-task?id=${task.id}">${task.name}</a></td>
+            <tr class="foundTasks">
+                <td class="taskName"><a href="/BiteSize_war/edit-task?id=${task.id}">${task.name}</a></td>
                 <td>${task.urgency}</td>
                 <td>${task.description}</td>
                 <td>${task.theme.name}</td>
