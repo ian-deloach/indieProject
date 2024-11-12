@@ -4,13 +4,26 @@
 <head>
     <c:import url="components/bootstrapHeader.jsp"/>
     <title>My Tasks</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#searchTerm").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#taskTable > tbody > tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <c:import url="components/navbar.jsp"/>
 <!--TODO Make every page only accessible if you have a valid email in the session -->
     <h2>All Tasks</h2>
 
-    <table>
+    <input id="searchTerm" type="text" placeholder="Search...">
+
+    <table id="taskTable">
         <thead>
             <th>Name</th>
             <th>Urgency</th>
