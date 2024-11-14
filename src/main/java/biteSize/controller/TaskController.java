@@ -27,6 +27,9 @@ public class TaskController {
      * @param selectedTasks
      */
     public void generateSchedule(String name, int id, List<Task> selectedTasks) {
+        UserController userControl = new UserController();
+        User user = userControl.getUserFromId(id);
+
 
     }
 

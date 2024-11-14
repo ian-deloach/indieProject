@@ -23,12 +23,14 @@
 
     <input id="searchTerm" type="text" placeholder="Search...">
 
-    <table id="taskTable">
-        <thead>
-            <th>Name</th>
-            <th>Urgency</th>
-            <th>Description</th>
-            <th>Theme</th>
+    <table id="taskTable" class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Urgency</th>
+                <th scope="col">Description</th>
+                <th scope="col">Theme</th>
+            </tr>
         </thead>
         <tbody>
             <c:forEach var="task" items="${tasks}">

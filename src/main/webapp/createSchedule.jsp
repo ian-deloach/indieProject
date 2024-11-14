@@ -38,6 +38,7 @@
                 <td>${task.urgency}</td>
                 <td>${task.description}</td>
                 <td>${task.theme.name}</td>
+                <td><input type="checkbox" value="${task.id}"></td>
             </tr>
         </c:forEach>
         </tbody>

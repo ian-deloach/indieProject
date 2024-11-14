@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(
@@ -33,6 +34,17 @@ public class CreateSchedule extends HttpServlet {
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/createSchedule.jsp");
         dispatcher.forward(req, resp);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        HttpSession session = req.getSession();
+        int userId = Integer.parseInt(session.getAttribute("userId").toString());
+        UserController control = new UserController();
+        User user = control.getUserFromId(userId);
+        ArrayList<String> selectedTasks = new ArrayList<>();
 
     }
 
