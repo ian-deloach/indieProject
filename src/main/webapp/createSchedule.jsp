@@ -24,8 +24,8 @@
 
     <input id="searchTerm" type="text" placeholder="Search...">
 
-    <table id="taskTable">
-        <thead>
+    <table id="taskTable" class="table">
+        <thead class="table-dark">
         <th>Name</th>
         <th>Urgency</th>
         <th>Description</th>

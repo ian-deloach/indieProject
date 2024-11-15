@@ -21,7 +21,14 @@
 <!--TODO Make every page only accessible if you have a valid email in the session -->
     <h2>All Tasks</h2>
 
-    <input id="searchTerm" type="text" placeholder="Search...">
+    <div class="input-group mb3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" style="height: 24px">
+                <img src="<%= request.getContextPath() %>/images/searchicon.svg" style="width: 1rem;">
+            </span>
+        </div>
+        <input id="searchTerm" class="form-control" type="text" placeholder="Search...">
+    </div>
 
     <table id="taskTable" class="table">
         <thead class="table-dark">
