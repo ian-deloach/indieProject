@@ -22,12 +22,7 @@
     <h2>All Tasks</h2>
 
     <div class="input-group mb3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" style="height: 24px">
-                <img src="<%= request.getContextPath() %>/images/searchicon.svg" style="width: 1rem;">
-            </span>
-        </div>
-        <input id="searchTerm" class="form-control" type="text" placeholder="Search...">
+            <input id="searchTerm" class="form-control" type="text" placeholder="Search...">
     </div>
 
     <table id="taskTable" class="table">

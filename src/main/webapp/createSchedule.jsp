@@ -22,7 +22,9 @@
 
     <h2>Schedule Builder</h2>
 
-    <input id="searchTerm" type="text" placeholder="Search...">
+    <div class="input-group mb3">
+        <input id="searchTerm" class="form-control" type="text" placeholder="Search...">
+    </div>
 
     <table id="taskTable" class="table">
         <thead class="table-dark">
