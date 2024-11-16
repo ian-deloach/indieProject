@@ -19,27 +19,28 @@
     </c:choose>
 
     <form action="add-task" method="POST">
-        <label for="taskName">Task Name:</label>
-        <input type="text" id="taskName" name="taskName" size="30">
+        <div class="form-group">
+            <label for="taskName">Task Name:</label>
+            <input type="text" id="taskName" class="form-control" name="taskName">
 
-        <label for="theme">Theme:</label>
-        <input list="userThemes" id="theme" name="theme" size="30">
-        <datalist id="userThemes">
-            <c:forEach items="${userThemes}" var="theme">
+            <label for="theme">Theme:</label>
+            <input list="userThemes" id="theme" class="form-control" name="theme">
+            <datalist id="userThemes">
+                <c:forEach items="${userThemes}" var="theme">
                 <option value="${theme.name}">
-            </c:forEach>
-        </datalist>
-        <br>
+                    </c:forEach>
+            </datalist>
+            <br>
 
-        <!--TODO remember to enable deadlines at some point -->
-        <label for="urgent">Urgent</label>
-        <input type="checkbox" id="urgent" name="urgent">
-        <br>
-        <label for="description">Description:</label>
-        <br>
-        <textarea id="description" name="description" rows="5" cols="30"></textarea>
-        <br><br>
-        <input type="submit" value="Add Task">
+            <label for="urgent" class="form-check-label">Urgent</label>
+            <input type="checkbox" id="urgent" class="form-check-input" name="urgent">
+            <br><br>
+
+            <label for="description">Description:</label>
+            <textarea id="description" class="form-control" name="description" rows="5" cols="30"></textarea>
+            <br><br>
+            <input type="submit" value="Add Task">
+        </div>
     </form>
 
 <c:import url="components/footer.jsp"/>
