@@ -35,13 +35,26 @@
         </thead>
         <tbody>
         <c:forEach var="task" items="${tasks}">
-            <tr class="foundTasks">
-                <td class="taskName"><a href="/BiteSize_war/edit-task?id=${task.id}">${task.name}</a></td>
-                <td>${task.urgency}</td>
-                <td>${task.description}</td>
-                <td>${task.theme.name}</td>
-                <td><input type="checkbox" value="${task.id}"></td>
-            </tr>
+            <c:choose>
+                <c:when test="${task.urgency=='Urgent'}">
+                    <tr class="table-primary">
+                        <td><a href="/BiteSize_war/edit-task?id=${task.id}">${task.name}</a></td>
+                        <td>${task.urgency}</td>
+                        <td>${task.description}</td>
+                        <td>${task.theme.name}</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                </c:when>
+                <c:otherwise>
+                    <tr>
+                        <td><a href="/BiteSize_war/edit-task?id=${task.id}">${task.name}</a></td>
+                        <td>${task.urgency}</td>
+                        <td>${task.description}</td>
+                        <td>${task.theme.name}</td>
+                        <td><input type="checkbox"></td>
+                    </tr>
+                </c:otherwise>
+            </c:choose>
         </c:forEach>
         </tbody>
     </table>
