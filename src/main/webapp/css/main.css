@@ -3,12 +3,20 @@ h1, h2, h3 {
 }
 
 form {
+    padding: 1em;
     margin: 1em;
+    background-color: #e7e9eb;
+    width: 50vw;
+    border-radius: 10px;
 }
 
-table {
+table, .table, #taskTable, .mb3{
     margin: 1em;
     width: 50%;
+}
+
+.form-group {
+    width: 90%
 }
 
 table, th, td {

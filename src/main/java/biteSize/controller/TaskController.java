@@ -7,6 +7,8 @@ import biteSize.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,13 +21,26 @@ import java.util.Random;
 public class TaskController {
 
     /**
+     * Takes the user's selected tasks to create their own schedule
+     * @param name
+     * @param id
+     * @param selectedTasks
+     */
+    public void generateSchedule(String name, int id, List<Task> selectedTasks) {
+        UserController userControl = new UserController();
+        User user = userControl.getUserFromId(id);
+
+
+    }
+
+    /**
      * Generates a list of tasks for a new schedule. Each schedule has 3 regular
      * tasks and 1 urgent task.
      * @param name The name of the schedule
      * @param id The id of the user
      */
     // Currently generates List<Task>
-    public void generateSchedule(String name, int id) {
+    public void generateRandomSchedule(String name, int id) {
 
         UserController userControl = new UserController();
         User user = userControl.getUserFromId(id);
@@ -52,7 +67,6 @@ public class TaskController {
 
         insertSchedule(newSchedule);
 
-//        return newSchedule;
     }
 
     /**

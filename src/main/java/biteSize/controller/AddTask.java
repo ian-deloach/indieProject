@@ -19,9 +19,6 @@ import java.util.*;
         urlPatterns = {"/add-task"}
 )
 
-/**
- * Servlet to create new tasks
- */
 public class AddTask extends HttpServlet {
 
     /**
@@ -76,6 +73,8 @@ public class AddTask extends HttpServlet {
         String description = req.getParameter("description");
         String dispatcherUrl = "/tasks";
         session.removeAttribute("addMessage");
+
+        // TODO This can be written in the controller classes. This is a monster method.
 
         // If the urgency checkbox was clicked, this sets the task as urgent
         if (Objects.equals(urgency, "on")) {

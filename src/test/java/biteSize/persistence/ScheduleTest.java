@@ -35,7 +35,7 @@ public class ScheduleTest extends TestCase {
     public void testInsertNewSchedule() {
         TaskController taskControl = new TaskController();
 
-        taskControl.generateSchedule("Test", 1);
+        taskControl.generateRandomSchedule("Test", 1);
         assertNotNull(scheduleDao.getById(3));
     }
 

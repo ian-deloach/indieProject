@@ -7,10 +7,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="tasks">My Tasks</a>
+                    <a class="nav-link" aria-current="page" href="tasks">My Tasks</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="add-task">Add Task</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="create-schedule">Create Schedule</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="schedules">Schedules</a>

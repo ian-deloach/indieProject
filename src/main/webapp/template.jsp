@@ -3,7 +3,6 @@
 <html>
 <head>
     <c:import url="components/bootstrapHeader.jsp"/>
-    <!--TODO Change title for each page -->
     <title>Dashboard</title>
 </head>
 <body>
