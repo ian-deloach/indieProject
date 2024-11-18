@@ -2,6 +2,7 @@
 <html>
     <head>
         <c:import url="components/bootstrapHeader.jsp"/>
+        <title>BiteSize</title>
     </head>
     <body>
         <c:choose>
