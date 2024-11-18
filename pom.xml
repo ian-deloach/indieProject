@@ -95,12 +95,13 @@
             <version>${hibernate-c3p0-version}</version>
         </dependency>
 
-        <!-- for parsing the aws access tokens -->
+        <!-- Auth0 integration -->
         <dependency>
             <groupId>com.auth0</groupId>
-            <artifactId>java-jwt</artifactId>
-            <version>${auth-version}</version>
+            <artifactId>mvc-auth-commons</artifactId>
+            <version>[1.0, 2.0)</version>
         </dependency>
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
