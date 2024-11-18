@@ -10,9 +10,12 @@
     <h2>Schedules</h2>
     <br>
     <form action="add-schedule" method="POST">
-        <label for="scheduleName">New Schedule:</label>
-        <input type="text" id="scheduleName" name="scheduleName">
-        <input type="submit" value="Generate new schedule">
+        <div class="mb3">
+            <label for="scheduleName" class="form-label">Random Schedule Name:</label>
+            <input type="text" id="scheduleName" class="form-control" name="scheduleName">
+            <br>
+            <input type="submit" class="btn btn-primary mb-3" value="Generate Random Schedule">
+        </div>
     </form>
 
     <jsp:useBean id="userSchedules" scope="request" type="java.util.List"/>
