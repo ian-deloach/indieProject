@@ -1,4 +1,4 @@
-package biteSize.controller;
+package biteSize.auth0;
 
 import org.json.HTTP;
 
