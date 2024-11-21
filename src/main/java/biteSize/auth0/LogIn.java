@@ -24,7 +24,7 @@ import java.util.Properties;
 public class LogIn extends HttpServlet implements PropertiesLoader {
 
     private AuthenticationController authenticationController;
-    Properties properties;
+    private Properties properties;
     private String domain;
 
     public void init() throws ServletException {
@@ -41,7 +41,7 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
     protected void doGet(final HttpServletRequest req, final HttpServletResponse res) throws ServletException, IOException {
         String redirectUri = req.getScheme() + "://" + req.getServerName();
         if ((req.getScheme().equals("http") && req.getServerPort() != 80) || (req.getScheme().equals("https") && req.getServerPort() != 443)) {
-            redirectUri += ":" + req.getServerPort();
+            redirectUri += ":" + req.getServerPort() + "/BiteSize_war";
         }
         redirectUri += "/callback";
 
