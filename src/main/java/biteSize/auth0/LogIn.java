@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,12 +25,9 @@ import java.util.Properties;
 public class LogIn extends HttpServlet implements PropertiesLoader {
 
     private AuthenticationController authenticationController;
-    private Properties properties;
-    private String domain;
 
     public void init() throws ServletException {
-        properties = loadProperties("/auth0.properties");
-        domain = properties.getProperty("domain");
+        Properties properties = loadProperties("/auth0.properties");
         try {
             authenticationController = AuthenticationControllerProvider.getInstance(properties);
         } catch (UnsupportedEncodingException e) {
