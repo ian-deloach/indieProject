@@ -18,7 +18,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 @WebServlet(
-        urlPatterns = {"/logIn"}
+        urlPatterns = {"/log-in"}
 )
 
 public class LogIn extends HttpServlet implements PropertiesLoader {
@@ -49,30 +49,5 @@ public class LogIn extends HttpServlet implements PropertiesLoader {
                 .build();
         res.sendRedirect(authorizeUrl);
     }
-
-
-//    My band-aid fix method for when I don't want to deal with auth0
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/logIn.jsp");
-//        dispatcher.forward(req, resp);
-//    }
-//
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//        HttpSession session = req.getSession();
-//        UserController userControl = new UserController();
-//
-//        String userEmail = req.getParameter("email");
-//        String userPassword = req.getParameter("password");
-//        User loggedInUser = userControl.getUserFromEmail(userEmail);
-//
-//        session.setAttribute("userName", loggedInUser.getName());
-//        session.setAttribute("userId", loggedInUser.getId());
-//        session.setAttribute("userEmail", loggedInUser.getEmail());
-//
-//        RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp");
-//        dispatcher.forward(req, resp);
-//
-//    }
 
 }

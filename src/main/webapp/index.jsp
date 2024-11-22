@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h1 class="card-title">Welcome to BiteSize!</h1>
                         <h3 class="card-text">Let's get some work done today</h3>
-                        <a href="logIn" class="btn btn-primary">Log In / Sign Up</a>
+                        <a href="log-in" class="btn btn-primary">Log In / Sign Up</a>
                     </div>
                 </div>
             </c:when>
