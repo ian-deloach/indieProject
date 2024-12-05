@@ -5,6 +5,10 @@ import com.auth0.AuthenticationController;
 import com.auth0.IdentityVerificationException;
 import com.auth0.SessionUtils;
 import com.auth0.Tokens;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import kong.unirest.core.HttpResponse;
+import kong.unirest.core.Unirest;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
+import java.io.*;
+import java.net.*;
 
 @WebServlet(urlPatterns = {"/callback"})
 
@@ -40,21 +46,28 @@ public class CallbackServlet extends HttpServlet implements PropertiesLoader {
         handle(req, res);
     }
 
-    @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        handle(req, res);
-    }
-
     private void handle(HttpServletRequest req, HttpServletResponse res) throws IOException {
         try {
             // Parse the request
             Tokens tokens = authenticationController.handle(req, res);
             SessionUtils.set(req, "accessToken", tokens.getAccessToken());
             SessionUtils.set(req, "idToken", tokens.getIdToken());
+            SessionUtils.set(req, "username", getUsername(tokens.getIdToken()));
             res.sendRedirect(redirectOnSuccess);
         } catch (IdentityVerificationException e) {
             e.printStackTrace();
             res.sendRedirect(redirectOnFail);
         }
+    }
+
+    public String getUsername(String idToken) throws IOException {
+        String username = "User";
+        HttpResponse<String> response = Unirest.get("https://" + properties.getProperty("domain")
+                        + "/api/v2/users/%7" + idToken + "%7D")
+                .header("authorization", "Bearer {yourMgmtApiAccessToken}")
+                .asString();
+
+        System.out.println(response);
+        return username;
     }
 }

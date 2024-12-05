@@ -6,7 +6,7 @@
     </head>
     <body>
         <c:choose>
-            <c:when test="${empty idToken}">
+            <c:when test="${empty username}">
                 <c:import url="components/guestNavbar.jsp"/>
                 <div class="card text-center">
                     <div class="card-body">
@@ -20,7 +20,7 @@
                 <c:import url="components/navbar.jsp"/>
                 <div class="card text-center">
                     <div class="card-body">
-                        <h1 class="card-title">Welcome, ${idToken}!</h1>
+                        <h1 class="card-title">Welcome, ${username}!</h1>
                         <h3 class="card-text">Here's your schedule for today</h3>
                         <p>This is where the schedule would go.</p>
                     </div>
