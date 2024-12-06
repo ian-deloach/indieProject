@@ -64,7 +64,7 @@ public class CallbackServlet extends HttpServlet implements PropertiesLoader {
         String username = "User";
         HttpResponse<String> response = Unirest.get("https://" + properties.getProperty("domain")
                         + "/api/v2/users/%7" + idToken + "%7D")
-                .header("authorization", "Bearer {yourMgmtApiAccessToken}")
+                .header("authorization", "Bearer " + properties.getProperty("bearer"))
                 .asString();
 
         System.out.println(response);

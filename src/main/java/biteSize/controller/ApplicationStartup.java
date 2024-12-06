@@ -22,6 +22,7 @@ import java.util.Properties;
         loadOnStartup = 1
 )
 
+// TODO Move auth0 properties into the servlet context
 public class ApplicationStartup extends HttpServlet implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -30,8 +31,7 @@ public class ApplicationStartup extends HttpServlet implements PropertiesLoader 
 
         //Properties properties = loadProperties("database.properties");
 
-        Properties databaseProperties = loadProperties("database.properties");
-        Properties cognitoProperties = loadProperties("cognito.properties");
+        Properties databaseProperties = loadProperties("/database.properties");
 
     }
 }
