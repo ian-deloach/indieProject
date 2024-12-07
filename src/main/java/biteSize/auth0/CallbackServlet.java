@@ -62,8 +62,9 @@ public class CallbackServlet extends HttpServlet implements PropertiesLoader {
 
     public String getUsername(String idToken) throws IOException {
         String username = "User";
+        //TODO MAKE USER ID WORK WITH UNIREST SO IT DOESNT THROW ERROR WHEN USING SYMBOL
         HttpResponse<String> response = Unirest.get("https://" + properties.getProperty("domain")
-                        + "/api/v2/users/%7" + idToken + "%7D")
+                        + "/api/v2/users/" + "auth0|673faca2982953eb4dd2c441")
                 .header("authorization", "Bearer " + properties.getProperty("bearer"))
                 .asString();
 
